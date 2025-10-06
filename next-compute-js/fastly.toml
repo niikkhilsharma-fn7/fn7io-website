@@ -1,0 +1,27 @@
+# This file describes a Fastly Compute package. To learn more visit:
+# https://developer.fastly.com/reference/fastly-toml/
+
+authors = ["suyash.io.dev@gmail.com"]
+description = "fastly next js website"
+language = "javascript"
+manifest_version = 2
+name = "fastly-nextjs-website"
+service_id = "iHzlVmEXjoUnfbwQpHdFO5"
+
+[local_server]
+  [local_server.backends]
+    [local_server.backends.elasticsearch_host]
+      url = "https://elastic.us-central1-prd.k8s.gcp.fn7.io/"
+    [local_server.backends.elasticsearch_host_dev]
+      url = "https://elastic.us-central1-dev.k8s.gcp.fn7.io/"
+
+# When the server is running on the local development environment,
+# it always uses "local-kvcache" as the name of the KV store used for caching.
+# This dummy entry exists as a placeholder to tell the local server that
+# it should initialize a KV store by this name.
+[[local_server.kv_stores.local-kvcache]]
+key = "dummy"
+data = "placeholder"
+
+[scripts]
+build = "npm ci && npm run prebuild && npm run build"

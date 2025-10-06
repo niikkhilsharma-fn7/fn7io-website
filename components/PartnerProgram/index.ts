@@ -1,0 +1,10 @@
+export { HeroSection } from "./HeroSection";
+export { RealityStats } from "./RealityStats";
+export { WhyTheOldWay } from "./WhyTheOldWay";
+export { AffiliateSection } from "./AffiliateSection";
+export { TargetAudienceSection } from "./TargetAudienceSection";
+export { BenefitsSection } from "./BenefitsSection";
+export { ProcessSection } from "./ProcessSection";
+export { HowItWorksSection } from "./HowItWorksSection";
+export { FinalCTASection } from "./FinalCTASection";
+export { PartnerApplicationForm } from "./PartnerApplicationForm";
