@@ -22,7 +22,7 @@ export default function Roadmap({ currentYear }: RoadmapProps) {
     "logo": "https://www.fn7.io/fn7_nav_logo.svg",
     "description": "fn7 provides 7 AI agents that automate your go-to-market strategy, scaling your business 24/7 with cutting-edge AI technology.",
     "sameAs": [
-      "https://twitter.com/fn7io",
+      "https://x.com/fn7_io",
       "https://linkedin.com/company/fn7io"
     ],
     "potentialAction": {

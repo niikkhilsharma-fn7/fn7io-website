@@ -49,7 +49,7 @@ export default function Home({}: HomeProps) {
     "logo": "https://www.fn7.io/fn7_nav_logo.svg",
     "description": "Scout AI finds real people asking for help with problems your product solves. Turn social conversations into traffic without paid ads.",
     "sameAs": [
-      "https://twitter.com/fn7io",
+      "https://x.com/fn7_io",
       "https://linkedin.com/company/fn7io"
     ],
     "potentialAction": {
