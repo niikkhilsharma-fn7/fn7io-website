@@ -141,6 +141,15 @@ export const HeroSection = ({}: HeroSectionProps) => {
           : redirectUrl;
 
         window.open(finalUrl, '_blank', 'noopener,noreferrer');
+        
+        // Reset UI to initial stage
+        setWebsite('');
+        setWebsiteValid(false);
+        setWebsiteTouched(false);
+        setShowError(false);
+        setIsValidating(false);
+        setValidationMessage('');
+        setShowLoader(false);
       }, 10000);
     } else {
       setWebsiteValid(false);
