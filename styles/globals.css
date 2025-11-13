@@ -126,6 +126,340 @@ body::-webkit-scrollbar-button {
   display: none;
 } /* Chrome */
 
+/* Form Styles */
+.scout-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 450px;
+  margin: 1rem auto;
+}
+
+.input-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group {
+  position: relative;
+  width: 100%;
+}
+
+/* Animated gradient border for initial attention */
+.input-group.pulse-border {
+  position: relative;
+  background: linear-gradient(to right, rgba(255, 72, 44, 0.3), rgba(162, 69, 238, 0.3));
+  padding: 1.5px;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.input-group.pulse-border .form-input {
+  position: relative;
+  background: white;
+  border: none;
+  z-index: 1;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 20px;
+  padding-right: 50px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  border: 1px solid rgba(230, 230, 230, 0.5);
+  border-radius: 12px;
+  background-color: white;
+  color: var(--primary-500);
+  transition: all 0.3s ease;
+  outline: none;
+  position: relative;
+  z-index: 1;
+}
+
+.form-input:focus {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.form-input.valid {
+  border-color: transparent;
+}
+
+.form-input.invalid {
+  border-color: transparent;
+}
+
+.form-input::placeholder {
+  color: var(--primary-900);
+  opacity: 0.6;
+}
+
+.checkmark {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #22C55E;
+  font-size: 20px;
+  font-weight: bold;
+  animation: checkmarkPop 0.3s ease;
+  z-index: 2;
+}
+
+.input-group.pulse-border.shake,
+.form-input.shake {
+  animation: inputShake 0.7s ease infinite;
+}
+
+@keyframes inputShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-16px);
+  }
+  40% {
+    transform: translateX(16px);
+  }
+  60% {
+    transform: translateX(-12px);
+  }
+  80% {
+    transform: translateX(12px);
+  }
+}
+
+.error-mark {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--warn-500);
+  font-size: 20px;
+  font-weight: bold;
+  background: var(--primary-50);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--warn-500);
+  animation: errorPop 0.3s ease;
+  z-index: 2;
+}
+
+@keyframes errorPop {
+  0% {
+    transform: translateY(-50%) scale(0);
+  }
+  60% {
+    transform: translateY(-50%) scale(1.1);
+  }
+  100% {
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+.error-message {
+  color: var(--warn-500);
+  font-size: 14px;
+  margin-top: 4px;
+  padding: 0 4px;
+}
+
+.helper-text {
+  color: var(--primary-600);
+  font-size: 13px;
+  margin-top: 4px;
+  padding: 0 4px;
+  opacity: 0.7;
+  display: inline-block;
+  font-style: italic;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Validation Loader */
+.validation-loader {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.validation-message {
+  color: var(--primary-500);
+  font-size: 14px;
+  margin-top: 8px;
+  padding: 0 4px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.validation-spinner {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  border-top: 2px solid #FF6C57;
+  border-left: 2px solid #B56AF1;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Circular progress animation for agent training */
+@keyframes progressStroke {
+  from {
+    stroke-dasharray: 0 138.23;
+  }
+  to {
+    stroke-dasharray: 34.56 103.67;
+  }
+}
+
+@keyframes progressStroke50 {
+  from {
+    stroke-dasharray: 0 138.23;
+  }
+  to {
+    stroke-dasharray: 69.12 69.12;
+  }
+}
+
+@keyframes progressStroke75 {
+  from {
+    stroke-dasharray: 0 138.23;
+  }
+  to {
+    stroke-dasharray: 103.67 34.56;
+  }
+}
+
+@keyframes progressStroke100 {
+  from {
+    stroke-dasharray: 0 138.23;
+  }
+  to {
+    stroke-dasharray: 138.23 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes drawProgress {
+  from {
+    transform: rotate(-90deg) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(-90deg) scale(1);
+    opacity: 1;
+  }
+}
+
+.form-input:disabled {
+  opacity: 0.8;
+  cursor: wait;
+}
+
+@keyframes checkmarkPop {
+  0% {
+    transform: translateY(-50%) scale(0);
+  }
+  60% {
+    transform: translateY(-50%) scale(1.2);
+  }
+  100% {
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gradient Background */
+.gradient-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(180deg, transparent 0%, transparent 50%, rgba(255, 72, 44, 0.015) 80%, rgba(162, 69, 238, 0.025) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gradient-bg::before {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -10%;
+  width: 120%;
+  height: 200px;
+  background: radial-gradient(ellipse at center, rgba(255, 72, 44, 0.025) 0%, rgba(162, 69, 238, 0.025) 50%, transparent 100%);
+  filter: blur(100px);
+  border-radius: 50%;
+}
+
+.gradient-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -5%;
+  right: -10%;
+  width: 120%;
+  height: 150px;
+  background: radial-gradient(ellipse at center, rgba(162, 69, 238, 0.025) 0%, rgba(255, 72, 44, 0.025) 50%, transparent 100%);
+  filter: blur(80px);
+  border-radius: 50%;
+}
+
 .hide-scrollbar {
   overflow-y: auto; /* allow vertical scroll */
   -ms-overflow-style: none; /* IE and Edge */

@@ -10,6 +10,7 @@ import { CTASection } from "@/components/CTASection";
 import { useRouter } from 'next/router';
 import { useSearchParams } from 'next/navigation';
 import { trackSignupClick, trackEvent, getCurrentUTMParams } from '@/utils/amplitude';
+import { useCallback } from "react";
 
 interface HomeProps {
   currentYear: number;
@@ -18,6 +19,14 @@ interface HomeProps {
 export default function Home({}: HomeProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  const handleGetStarted = useCallback(() => {
+    const heroElement = document.getElementById('hero-section');
+    if (heroElement) {
+      heroElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    window.dispatchEvent(new Event('trigger-hero-input'));
+  }, []);
 
   // Function to preserve UTM parameters when redirecting to beta access form
   const getSignupUrlWithUTM = () => {
@@ -121,10 +130,10 @@ export default function Home({}: HomeProps) {
           description="Can you believe a 67% CTR? In one week with zero paid marketing, a beta brand drove 67% of its traffic from 3,782 conversations Scout found, including 412 pain point posts, leading to direct signups and product feedback."
           imageSrc="/images/traffic.png"
           imageAlt="Analytics dashboard showing traffic results"
-          buttonText="Get Beta Access"
+          buttonText="Get Started"
           buttonOnClick={() => {
             trackSignupClick('Feature Section - Try Scout', getCurrentUTMParams());
-            window.location.href = getSignupUrlWithUTM();
+            handleGetStarted();
           }}
           reverse={true}
         />
@@ -138,10 +147,10 @@ export default function Home({}: HomeProps) {
           description="Muse keeps you top of mind — generating posts for LinkedIn & X that match your tone, topics, and schedule. Stay consistent without the burnout."
           imageSrc="/images/muse-dashboard.svg"
           imageAlt="Muse Dashboard"
-          buttonText="Get Beta Access"
+          buttonText="Get Started"
           buttonOnClick={() => {
             trackSignupClick('Feature Section - Try Muse', getCurrentUTMParams());
-            window.location.href = getSignupUrlWithUTM();
+            handleGetStarted();
           }}
         />
 

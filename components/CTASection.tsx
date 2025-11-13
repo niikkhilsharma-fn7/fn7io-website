@@ -1,35 +1,17 @@
 import Image from "next/image";
-import { useRouter } from 'next/router';
-import { useSearchParams } from 'next/navigation';
+import { useCallback } from 'react';
 import { trackSignupClick, getCurrentUTMParams } from '@/utils/amplitude';
 
 interface CTASectionProps {}
 
 export const CTASection = ({}: CTASectionProps) => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
-  // Function to preserve UTM parameters when redirecting to beta access form
-  const getSignupUrlWithUTM = () => {
-    const baseUrl = 'https://www.fn7.io/get-form';
-    const utmParams: Record<string, string> = {};
-
-    // Collect all UTM parameters from current URL
-    searchParams.forEach((value, key) => {
-      if (key.startsWith('utm_')) {
-        utmParams[key] = value;
-      }
-    });
-
-    // If there are UTM parameters, append them to the signup URL
-    if (Object.keys(utmParams).length > 0) {
-      const queryString = new URLSearchParams(utmParams).toString();
-      return `${baseUrl}?${queryString}`;
+  const handleGetStarted = useCallback(() => {
+    const heroElement = document.getElementById('hero-section');
+    if (heroElement) {
+      heroElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-
-    // No UTM params, return base URL
-    return baseUrl;
-  };
+    window.dispatchEvent(new Event('trigger-hero-input'));
+  }, []);
 
   return (
     <section className="flex items-center justify-center px-8 py-20 mt-32 max-w-[1200px] mx-auto w-full max-md:mt-20 max-md:px-6 max-md:py-16">
@@ -43,11 +25,11 @@ export const CTASection = ({}: CTASectionProps) => {
           <button
             onClick={() => {
               trackSignupClick('CTA Section - Desktop', getCurrentUTMParams());
-              window.location.href = getSignupUrlWithUTM();
+              handleGetStarted();
             }}
             className="mt-8 px-8 py-4 bg-black text-white text-lg font-medium rounded-lg hover:bg-gray-800 transition-colors"
           >
-            Get Beta Access
+            Get Started
           </button>
         </div>
 
@@ -91,11 +73,11 @@ export const CTASection = ({}: CTASectionProps) => {
         <button
           onClick={() => {
             trackSignupClick('CTA Section - Mobile', getCurrentUTMParams());
-            window.location.href = getSignupUrlWithUTM();
+            handleGetStarted();
           }}
           className="px-6 py-3 bg-black text-white text-base font-medium rounded-lg hover:bg-gray-800 transition-colors"
         >
-          Show Me My Buyers
+          Get Started
         </button>
       </div>
     </section>

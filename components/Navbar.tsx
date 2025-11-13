@@ -3,11 +3,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/router";
 import React from "react";
 import { usePreserveQueryParams } from "@/hooks/usePreserveQueryParams";
-import { useSearchParams } from "next/navigation";
 import { trackSignupClick, getCurrentUTMParams } from "@/utils/amplitude";
 
 export default function Navbar() {
@@ -19,29 +18,19 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
   const { navigateWithQuery, getLinkWithQuery } = usePreserveQueryParams();
-  const searchParams = useSearchParams();
-
-  // Function to preserve UTM parameters when redirecting to beta access form
-  const getSignupUrlWithUTM = () => {
-    const baseUrl = 'https://www.fn7.io/get-form';
-    const utmParams: Record<string, string> = {};
-
-    // Collect all UTM parameters from current URL
-    searchParams.forEach((value, key) => {
-      if (key.startsWith('utm_')) {
-        utmParams[key] = value;
+  const handleGetStarted = useCallback(
+    (options?: { closeMenu?: boolean }) => {
+      if (options?.closeMenu) {
+        setMobileMenuOpen(false);
       }
-    });
-
-    // If there are UTM parameters, append them to the signup URL
-    if (Object.keys(utmParams).length > 0) {
-      const queryString = new URLSearchParams(utmParams).toString();
-      return `${baseUrl}?${queryString}`;
-    }
-
-    // No UTM params, return base URL
-    return baseUrl;
-  };
+      const heroElement = document.getElementById('hero-section');
+      if (heroElement) {
+        heroElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      window.dispatchEvent(new Event('trigger-hero-input'));
+    },
+    []
+  );
 
   useEffect(() => {
     const handleResize = () => {
@@ -104,11 +93,11 @@ export default function Navbar() {
         <button
           onClick={() => {
             trackSignupClick('Navbar - Scrolled', getCurrentUTMParams());
-            window.location.href = getSignupUrlWithUTM();
+            handleGetStarted();
           }}
           className={`bg-gradient-to-r from-[#ff482ccc] to-[#a245eecc] text-white ${isTablet ? 'w-[140px] h-[32px] text-base' : 'w-[180px] h-[35px] text-lg'} rounded-xl leading-6 whitespace-nowrap`}
         >
-         Get Beta Access
+         Get Started
         </button>
       </div>
     );
@@ -162,10 +151,10 @@ export default function Navbar() {
           <button
             onClick={() => {
               trackSignupClick('Navbar - Main', getCurrentUTMParams());
-              window.location.href = getSignupUrlWithUTM();
+              handleGetStarted();
             }}
             className={`bg-white md:bg-black text-black md:text-white text-sm md:text-base px-2 md:px-3 py-2 rounded-lg whitespace-nowrap static md:absolute md:top-1/2 md:right-0 md:-translate-y-1/2 cursor-pointer`}>
-             Get Beta Access
+             Get Started
           </button>
 
           <button
@@ -193,10 +182,10 @@ export default function Navbar() {
             <button
               onClick={() => {
                 trackSignupClick('Navbar - Mobile Menu', getCurrentUTMParams());
-                window.location.href = getSignupUrlWithUTM();
+                handleGetStarted({ closeMenu: true });
               }}
               className="bg-white text-black text-lg rounded-lg py-3 px-6 cursor-pointer">
-             Get Beta Access
+             Get Started
             </button>
           </div>
         )}
