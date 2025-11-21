@@ -248,7 +248,7 @@ export const HeroSection = ({}: HeroSectionProps) => {
         backgroundRepeat: 'no-repeat'
       }}
     >
-      <h1 className="mt-20 sm:mt-24 md:mt-28 lg:mt-36 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-black max-w-[1200px] leading-tight px-6 md:px-8 lg:px-4">
+      <h1 className="mt-20 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-black max-w-[1200px] leading-tight px-6 md:px-8 lg:px-4">
         Your Buyers Are Talking.<br />Agent Scout Finds Them.
       </h1>
       <p className="mt-4 md:mt-5 text-lg sm:text-xl md:text-2xl font-normal text-black px-6 md:px-8 lg:px-4 max-w-[900px]">

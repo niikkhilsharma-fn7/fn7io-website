@@ -23,13 +23,28 @@ export default function Navbar() {
       if (options?.closeMenu) {
         setMobileMenuOpen(false);
       }
-      const heroElement = document.getElementById('hero-section');
-      if (heroElement) {
-        heroElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      const scrollToHero = () => {
+        const heroElement = document.getElementById('hero-section');
+        if (heroElement) {
+          heroElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        window.dispatchEvent(new Event('trigger-hero-input'));
+      };
+
+      if (router.pathname === '/') {
+        // Already on index page, scroll immediately
+        scrollToHero();
+      } else {
+        // Navigate to index page first, then scroll after navigation
+        navigateWithQuery('/');
+        // Wait for navigation to complete before scrolling
+        setTimeout(() => {
+          scrollToHero();
+        }, 100);
       }
-      window.dispatchEvent(new Event('trigger-hero-input'));
     },
-    []
+    [router.pathname, navigateWithQuery]
   );
 
   useEffect(() => {
