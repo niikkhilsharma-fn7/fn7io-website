@@ -27,6 +27,7 @@ fastly purge --all --token [TOKEN] --service-id kAMlxjhEvWm3K6DbXv6jv1
 
 ## Key Service IDs
 - **Edge Compute Service**: iHzlVmEXjoUnfbwQpHdFO5
+- DEV compute service: 5g5hLrw2tkg5GH1rfPBr7i
 - **CDN Service**: kAMlxjhEvWm3K6DbXv6jv1
 - **Fastly Token**: hvdENd8J2pjPSQMy4EhzmMsuSAFQ-vvB
 
