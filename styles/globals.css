@@ -174,7 +174,7 @@ body::-webkit-scrollbar-button {
   border: 1px solid rgba(230, 230, 230, 0.5);
   border-radius: 12px;
   background-color: white;
-  color: var(--primary-500);
+  color: #000;
   transition: all 0.3s ease;
   outline: none;
   position: relative;
@@ -195,7 +195,7 @@ body::-webkit-scrollbar-button {
 }
 
 .form-input::placeholder {
-  color: var(--primary-900);
+  color: #A6A6A6;
   opacity: 0.6;
 }
 
@@ -240,17 +240,17 @@ body::-webkit-scrollbar-button {
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--warn-500);
+  color: #FF5533;
   font-size: 20px;
   font-weight: bold;
-  background: var(--primary-50);
+  background: #FFFFFF;
   width: 24px;
   height: 24px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--warn-500);
+  border: 2px solid #FF5533;
   animation: errorPop 0.3s ease;
   z-index: 2;
 }
@@ -268,14 +268,14 @@ body::-webkit-scrollbar-button {
 }
 
 .error-message {
-  color: var(--warn-500);
+  color: #FF5533;
   font-size: 14px;
   margin-top: 4px;
   padding: 0 4px;
 }
 
 .helper-text {
-  color: var(--primary-600);
+  color: #737373;
   font-size: 13px;
   margin-top: 4px;
   padding: 0 4px;
@@ -295,7 +295,7 @@ body::-webkit-scrollbar-button {
 }
 
 .validation-message {
-  color: var(--primary-500);
+  color:  #000000;
   font-size: 14px;
   margin-top: 8px;
   padding: 0 4px;
