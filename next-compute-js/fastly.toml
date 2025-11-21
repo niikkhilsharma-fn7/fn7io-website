@@ -6,7 +6,8 @@ description = "fastly next js website"
 language = "javascript"
 manifest_version = 2
 name = "fastly-nextjs-website"
-service_id = "iHzlVmEXjoUnfbwQpHdFO5"
+service_id = "5g5hLrw2tkg5GH1rfPBr7i"
+# service_id = "iHzlVmEXjoUnfbwQpHdFO5" - PROD
 
 [local_server]
   [local_server.backends]
