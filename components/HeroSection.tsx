@@ -217,7 +217,8 @@ export const HeroSection = ({}: HeroSectionProps) => {
 
   // Function to preserve UTM parameters when redirecting to beta access form
   const getSignupUrlWithUTM = () => {
-    const baseUrl = 'https://atlas.dev2.app.fn7.io/auth/provider/signup';
+    // Get base URL from environment variable, fallback to dev URL if not set
+    const baseUrl = process.env.NEXT_PUBLIC_SIGNUP_BASE_URL || 'https://atlas.dev2.app.fn7.io/auth/provider/signup';
     const utmParams: Record<string, string> = {};
 
     // Collect all UTM parameters from current URL

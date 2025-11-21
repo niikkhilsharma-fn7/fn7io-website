@@ -12,6 +12,34 @@ Install the dependancies:
 npm i
 ```
 
+### Environment Variables Setup
+
+This project uses environment variables to configure different URLs for development and production environments.
+
+1. **Environment Files:**
+   - `.env.development` - Automatically loaded when running `npm run dev`
+   - `.env.production` - Automatically loaded when running `npm run build` or `npm start`
+   - `.env.local` - Optional, for local overrides (gitignored, highest priority)
+   - `.env.example` - Template file showing required variables
+
+2. **Required Environment Variables:**
+   - `NEXT_PUBLIC_SIGNUP_BASE_URL` - Base URL for the signup endpoint
+     - Development: `https://atlas.dev2.app.fn7.io/auth/provider/signup`
+     - Production: `https://atlas.app.fn7.io/auth/provider/signup`
+
+3. **How It Works:**
+   - When you run `npm run dev`, Next.js automatically loads `.env.development`
+   - When you run `npm run build` or `npm start`, Next.js automatically loads `.env.production`
+   - You can create `.env.local` to override values for local development (this file is gitignored)
+
+4. **Setting Up for First Time:**
+   ```bash
+   # The environment files (.env.development and .env.production) are already configured
+   # If you need to override for local development, copy .env.example to .env.local:
+   cp .env.example .env.local
+   # Then edit .env.local with your custom values
+   ```
+
 First, run the development server:
 
 ```bash

@@ -11,6 +11,7 @@
     "fastly-serve": "npm run fastly-build && cd next-compute-js && fastly compute serve --verbose",
     "fastly-deploy": "npm run fastly-build && cd next-compute-js && fastly compute publish --verbose"
   },
+  "description": "Next.js application with environment-based configuration. Uses .env.development for dev and .env.production for production builds. See README.md for environment variable setup.",
   "dependencies": {
     "@amplitude/analytics-browser": "^2.23.5",
     "framer-motion": "^12.15.0",
