@@ -14,7 +14,7 @@ service_id = "5g5hLrw2tkg5GH1rfPBr7i"
     [local_server.backends.elasticsearch_host]
       url = "https://elastic.us-central1-prd.k8s.gcp.fn7.io/"
     [local_server.backends.elasticsearch_host_dev]
-      url = "https://elastic.us-central1-dev.k8s.gcp.fn7.io/"
+      url = "https://elastic-v2.us-central1-dev.k8s.gcp.fn7.io/"
 
 # When the server is running on the local development environment,
 # it always uses "local-kvcache" as the name of the KV store used for caching.

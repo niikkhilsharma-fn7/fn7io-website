@@ -67,8 +67,8 @@ async function getShortURLFromES(event) {
   if (env === "dev") {
     isDevEnv = "true";
     console.log("Using dev environment for Elasticsearch");
-    esUrl = `https://elastic.us-central1-dev.k8s.gcp.fn7.io/url_shortener/_doc/${shortcode}`;
-    apiKey = "TGhnempaZ0JCR1o4NG95R21jM2I6aUoyR2U3SG1Tb2FRblRvcXV3Mkc3QQ==";
+    esUrl = `https://elastic-v2.us-central1-dev.k8s.gcp.fn7.io/url_shortener/_doc/${shortcode}`;
+    apiKey = "SHFyVVVKb0JBY2V6eDhMd0hxS2o6aGZUM1I1anJSazI0LWlCMGNkQU1Hdw==";
   } else {
     console.log("Using production environment for Elasticsearch");
     esUrl = `https://elastic.us-central1-prd.k8s.gcp.fn7.io/url_shortener/_doc/${shortcode}`;
