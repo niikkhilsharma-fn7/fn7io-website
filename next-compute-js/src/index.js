@@ -103,7 +103,7 @@ async function getShortURLFromES(event) {
       );
 
       if (esResponse.status === 404) {
-        return new Response("Invalid Link", { status: 404 });
+        return new Response(`Invalid Link ${env}`, { status: 404 });
       }
     }
 
@@ -143,7 +143,8 @@ async function getShortURLFromES(event) {
     console.error("Error fetching shortcode from Elasticsearch:", error);
     return new Response("Failed to process the request.", {
       status: 500,
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json",
+       },
     });
   }
 }
