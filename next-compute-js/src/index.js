@@ -27,10 +27,20 @@ await vercelServer.initialize();
 const requestHandler = vercelServer.createHandler();
 
 addEventListener("fetch", (event) => {
-  if (event.request.url.includes("api/redirect-me")) {
+  const url = new URL(event.request.url);
+  console.log("=== INCOMING REQUEST ===");
+  console.log("Full URL:", event.request.url);
+  console.log("Pathname:", url.pathname);
+  console.log("========================");
+  
+  if (event.request.url.includes("scraper/web/")) {
+    console.log("next-compute-js: Request is for scraper redirect");
+    event.respondWith(handleScraperRedirect(event));
+  } else if (event.request.url.includes("api/redirect-me")) {
     console.log("next-compute-js: Request is for shortcode redirect");
     event.respondWith(getShortURLFromES(event));
   } else {
+    console.log("next-compute-js: Request is for normal page handling");
     event.respondWith(handleRequest(event));
   }
 });
@@ -38,6 +48,43 @@ addEventListener("fetch", (event) => {
 async function handleRequest(event) {
   console.log("Handling request in next-compute-js:");
   return requestHandler(event);
+}
+
+async function handleScraperRedirect(event) {
+  console.log("Handling scraper redirect:", event.request.url);
+  
+  const url = new URL(event.request.url);
+  const urlPath = url.pathname;
+  
+  // Extract the target URL from the path: scraper/web/abc.com -> abc.com
+  const targetUrl = urlPath.split("/scraper/web/")[1];
+  
+  if (!targetUrl) {
+    return new Response("Invalid scraper URL", {
+      status: 400,
+      headers: {
+        "Content-Type": "text/plain",
+      },
+    });
+  }
+  
+  // Ensure the URL has a protocol
+  const redirectUrl = targetUrl.startsWith("http://") || targetUrl.startsWith("https://")
+    ? targetUrl
+    : `https://${targetUrl}`;
+  
+  console.log(`Redirecting scraper request to: ${redirectUrl}`);
+  
+  // Perform the redirect with no-cache headers
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: redirectUrl,
+      "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+      "Pragma": "no-cache",
+      "Expires": "0",
+    },
+  });
 }
 
 async function getShortURLFromES(event) {
