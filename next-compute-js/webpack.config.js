@@ -32,6 +32,7 @@ module.exports = {
       "tls": false,
       "crypto": false,
       "stream": false,
+      "stream/web": false,
       "url": false,
       "zlib": false,
       "util": false,
@@ -58,6 +59,8 @@ module.exports = {
       "async_hooks": false,
       "perf_hooks": false,
       "worker_threads": false,
+      "constants": false,
+      "pnpapi": false,
     },
   },
   module: {
@@ -85,6 +88,14 @@ module.exports = {
       // Allow Webpack to handle fastly:* namespaced module imports by treating
       // them as modules rather than try to process them as URLs
       if (/^fastly:.*$/.test(request)) {
+        return callback(null, 'commonjs ' + request);
+      }
+      // Exclude webpack internal modules
+      if (/^webpack(\/|$)/.test(request)) {
+        return callback(null, 'commonjs ' + request);
+      }
+      // Exclude Next.js server modules that shouldn't be bundled
+      if (/^next\/dist\/(server|build)/.test(request)) {
         return callback(null, 'commonjs ' + request);
       }
       callback();
