@@ -1,0 +1,42 @@
+name: '_: fastly build'
+"on":
+  workflow_call:
+    inputs:
+      source_directory:
+        required: true
+        type: string
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install Root Dependencies
+      run: npm install
+
+    - name: Set up Fastly CLI
+      uses: fastly/compute-actions/setup@v5
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build Next.js for Fastly
+      run: npm run fastly-build
+
+    - name: Build Compute@Edge Package
+      uses: fastly/compute-actions/build@v5
+      with:
+        verbose: true
+        project_directory: ${{ inputs.source_directory }}
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: app
+        path: |
+          ${{ inputs.source_directory }}/pkg/*.tar.gz
+

@@ -1,0 +1,37 @@
+name: 'website'
+on:
+  push:
+    paths:
+    - '**'
+    - '!.github/workflows/**'
+  workflow_dispatch:
+    inputs:
+      prod_deploy:
+        default: false
+        type: boolean
+jobs:
+  app:
+    uses: ./.github/workflows/reusable-build-fastly.yml
+    if: github.ref == 'refs/heads/main'
+    with:
+      source_directory: next-compute-js
+    secrets: inherit
+  dev:
+    needs: app
+    uses: ./.github/workflows/reusable-deploy-fastly.yml
+    if: github.ref == 'refs/heads/main'
+    with:
+      source_directory: next-compute-js
+      service_id: 5g5hLrw2tkg5GH1rfPBr7i
+      environment: dev
+    secrets: inherit
+  prod:
+    needs: dev
+    uses: ./.github/workflows/reusable-deploy-fastly.yml
+    if: github.event.inputs.prod_deploy == 'true' && github.ref == 'refs/heads/main'
+    with:
+      source_directory: next-compute-js
+      service_id: iHzlVmEXjoUnfbwQpHdFO5
+      environment: prod
+    secrets: inherit
+

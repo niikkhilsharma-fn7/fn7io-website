@@ -1,0 +1,37 @@
+name: "_: fastly deploy"
+"on":
+  workflow_call:
+    inputs:
+      source_directory:
+        required: true
+        type: string
+      service_id:
+        required: true
+        type: string
+      environment:
+        required: true
+        type: string
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v2
+        with:
+          name: app
+          path: "${{ inputs.source_directory }}/pkg"
+
+      - name: Set up Fastly CLI
+        uses: fastly/compute-actions/setup@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy Compute@Edge Package
+        uses: fastly/compute-actions/deploy@v5
+        with:
+          service_id: ${{ inputs.service_id }}
+          comment: "Deployed via GitHub Actions"
+          project_directory: ${{ inputs.source_directory }}
+        env:
+          FASTLY_API_TOKEN: ${{ secrets.FASTLY_API_TOKEN }}
+
