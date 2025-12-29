@@ -25,4 +25,4 @@ key = "dummy"
 data = "placeholder"
 
 [scripts]
-build = "npm ci && npm run prebuild && npm run build"
+build = "npm install && npm run prebuild && npm run build"
