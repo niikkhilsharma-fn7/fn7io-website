@@ -15,19 +15,19 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v2
+      - uses: actions/checkout@v6
+      - uses: actions/download-artifact@v4
         with:
           name: app
           path: "${{ inputs.source_directory }}/pkg"
 
       - name: Set up Fastly CLI
-        uses: fastly/compute-actions/setup@v5
+        uses: fastly/compute-actions/setup@v12
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy Compute@Edge Package
-        uses: fastly/compute-actions/deploy@v5
+        uses: fastly/compute-actions/deploy@v12
         with:
           service_id: ${{ inputs.service_id }}
           comment: "Deployed via GitHub Actions"
