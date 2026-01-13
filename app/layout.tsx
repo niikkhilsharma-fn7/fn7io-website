@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import OrganizationSchema from "@/components/metadata/OrganizationSchema";
 import { Sora, Poppins } from "next/font/google";
 import "./globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -93,6 +94,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <OrganizationSchema />
         <Footer />
+        <SpeedInsights />
       </body>
     </html>
   );
