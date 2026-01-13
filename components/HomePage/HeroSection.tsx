@@ -3,6 +3,7 @@
 import { TypingAnimation } from "./TypingAnimation";
 import { BrandIntelligence } from "./BrandIntelligence";
 import { WebsiteInputForm } from "./WebsiteInputForm";
+import { Suspense } from "react";
 
 export const HeroSection = () => {
   return (
@@ -31,7 +32,9 @@ export const HeroSection = () => {
         </p>
 
         {/* Website Input Form */}
-        <WebsiteInputForm />
+        <Suspense fallback={<div className="w-full max-w-lg mx-auto mb-8 h-20" />}>
+          <WebsiteInputForm />
+        </Suspense>
 
         {/* Interactive Diagram Container */}
         <div className="w-full relative mt-8 select-none min-h-[700px] flex items-center justify-center bg-slate-50/50 rounded-3xl border border-slate-200 overflow-hidden shadow-inner">

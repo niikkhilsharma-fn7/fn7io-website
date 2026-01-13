@@ -1,13 +1,10 @@
-import React from 'react';
-import { GetServerSideProps } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { Footer } from '@/components/Footer';
-import Navbar from '@/components/Navbar';
-import { blogsData, type Blog } from '@/data/blogs';
-import { usePreserveQueryParams } from '@/hooks/usePreserveQueryParams';
+import { GetServerSideProps } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { blogsData, type Blog } from "@/data/blogs";
+import { usePreserveQueryParams } from "@/hooks/usePreserveQueryParams";
 
 interface BlogDetailPageProps {
   blog: Blog | null;
@@ -17,7 +14,7 @@ export const getServerSideProps: GetServerSideProps<BlogDetailPageProps> = async
   const { id } = context.params!;
 
   // Find the blog by ID
-  const blog = blogsData.find(b => b.id === id) || null;
+  const blog = blogsData.find((b) => b.id === id) || null;
 
   // If blog not found, return 404
   if (!blog) {
@@ -42,16 +39,14 @@ export default function BlogDetailPage({ blog }: BlogDetailPageProps) {
   }
 
   // Get related blogs (same category, excluding current)
-  const relatedBlogs = blogsData
-    .filter(b => b.category === blog.category && b.id !== blog.id)
-    .slice(0, 3);
+  const relatedBlogs = blogsData.filter((b) => b.category === blog.category && b.id !== blog.id).slice(0, 3);
 
   return (
     <>
       <Head>
         <title>{blog.title} - fn7 Blog</title>
         <meta name="description" content={blog.metaDescription || blog.excerpt} />
-        <meta name="keywords" content={blog.keywords?.join(', ') || blog.tags.join(', ')} />
+        <meta name="keywords" content={blog.keywords?.join(", ") || blog.tags.join(", ")} />
 
         {/* Open Graph tags */}
         <meta property="og:title" content={blog.title} />
@@ -71,7 +66,6 @@ export default function BlogDetailPage({ blog }: BlogDetailPageProps) {
       </Head>
 
       <div className="min-h-screen bg-white">
-
         {/* Hero Section with Featured Image */}
         <div className="relative bg-gray-900">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900/50" />
@@ -101,24 +95,20 @@ export default function BlogDetailPage({ blog }: BlogDetailPageProps) {
                   <span>/</span>
                   <span>{blog.category}</span>
                 </div>
-                <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                  {blog.title}
-                </h1>
+                <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">{blog.title}</h1>
                 <div className="flex items-center gap-6 text-white/80">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center">
-                      <span className="text-sm font-semibold text-white">
-                        {blog.author.name.charAt(0)}
-                      </span>
+                      <span className="text-sm font-semibold text-white">{blog.author.name.charAt(0)}</span>
                     </div>
                     <span className="font-medium">{blog.author.name}</span>
                   </div>
                   <span>•</span>
                   <time dateTime={blog.publishedDate}>
-                    {new Date(blog.publishedDate).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
+                    {new Date(blog.publishedDate).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
                     })}
                   </time>
                   <span>•</span>
@@ -154,24 +144,28 @@ export default function BlogDetailPage({ blog }: BlogDetailPageProps) {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Share this article</h3>
             <div className="flex gap-4">
               <a
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(blog.title)}&url=${encodeURIComponent(`https://www.fn7.io/blogs/${blog.id}`)}`}
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(blog.title)}&url=${encodeURIComponent(
+                  `https://www.fn7.io/blogs/${blog.id}`
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
                 Share on X
               </a>
               <a
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://www.fn7.io/blogs/${blog.id}`)}`}
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+                  `https://www.fn7.io/blogs/${blog.id}`
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                 </svg>
                 Share on LinkedIn
               </a>
@@ -186,11 +180,7 @@ export default function BlogDetailPage({ blog }: BlogDetailPageProps) {
               <h2 className="text-3xl font-bold text-gray-900 mb-8">Related Articles</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {relatedBlogs.map((relatedBlog) => (
-                  <Link
-                    key={relatedBlog.id}
-                    href={getLinkWithQuery(`/blogs/${relatedBlog.id}`)}
-                    className="group"
-                  >
+                  <Link key={relatedBlog.id} href={getLinkWithQuery(`/blogs/${relatedBlog.id}`)} className="group">
                     <article className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                       <div className="relative h-48 overflow-hidden bg-gray-100">
                         {relatedBlog.thumbnail ? (
@@ -209,12 +199,8 @@ export default function BlogDetailPage({ blog }: BlogDetailPageProps) {
                         <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
                           {relatedBlog.title}
                         </h3>
-                        <p className="text-gray-600 text-sm line-clamp-3">
-                          {relatedBlog.excerpt}
-                        </p>
-                        <div className="mt-4 text-sm text-gray-500">
-                          {relatedBlog.readTime}
-                        </div>
+                        <p className="text-gray-600 text-sm line-clamp-3">{relatedBlog.excerpt}</p>
+                        <div className="mt-4 text-sm text-gray-500">{relatedBlog.readTime}</div>
                       </div>
                     </article>
                   </Link>

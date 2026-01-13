@@ -16,7 +16,7 @@ import {
   FAQSection,
 } from "@/components/HomePage";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className="selection:bg-blue-100 selection:text-blue-900 font-sora">
       <HeroSection />

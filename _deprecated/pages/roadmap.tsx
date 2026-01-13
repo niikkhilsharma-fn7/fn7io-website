@@ -1,10 +1,10 @@
-import { Hero } from "@/components/Roadmap/Hero";
-import { AgenticAI } from "@/components/Roadmap/AgenticAI";
-import { Security } from "@/components/Roadmap/Security";
+import { Hero } from "@/deprecated/Roadmap/Hero";
+import { AgenticAI } from "@/deprecated/Roadmap/AgenticAI";
+import { Security } from "@/deprecated/Roadmap/Security";
 // import { BetaBuzz } from "@/components/BetaBuzz";
-import { Agents } from "@/components/Roadmap/Agents";
-import { Fn7Need } from "@/components/Roadmap/Fn7Need";
-import { RiseOfAgenticAI } from "@/components/Roadmap/RiseOfAgenticAI";
+import { Agents } from "@/deprecated/Roadmap/Agents";
+import { Fn7Need } from "@/deprecated/Roadmap/Fn7Need";
+import { RiseOfAgenticAI } from "@/deprecated/Roadmap/RiseOfAgenticAI";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 

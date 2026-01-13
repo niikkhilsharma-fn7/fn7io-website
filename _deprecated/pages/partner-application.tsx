@@ -1,6 +1,6 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import { PartnerApplicationForm } from '@/components/PartnerProgram';
+import type { NextPage } from "next";
+import Head from "next/head";
+import { PartnerApplicationForm } from "@/deprecated/PartnerProgram";
 
 const PartnerApplication: NextPage = () => {
   return (

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { useSearchParams } from "next/navigation";
 import { trackSignupClick, getCurrentUTMParams } from "@/deprecated/utils/amplitude";
-import HomeScoutLoadingBox from "../../components/HomeScoutLoadingBox";
+import HomeScoutLoadingBox from "../../../components/HomeScoutLoadingBox";
 
 interface HeroSectionProps {}
 

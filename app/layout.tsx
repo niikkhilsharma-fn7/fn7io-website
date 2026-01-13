@@ -1,9 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import OrganizationSchema from "@/components/metadata/OrganizationSchema";
 import { Sora, Poppins } from "next/font/google";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   title: "Scout AI - Turn Social Conversations Into Traffic | fn7",
@@ -19,10 +24,6 @@ export const metadata: Metadata = {
     "Organic Traffic",
   ],
   creator: "fn7",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-  },
   icons: {
     icon: "/fn7_nav_logo.svg",
   },

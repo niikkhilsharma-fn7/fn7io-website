@@ -1,6 +1,6 @@
-import { Security } from "@/components/Roadmap/Security";
-import { PlatformHero } from "@/components/PlatformHeroSection";
-import {TimeIsNowSection} from "@/components/PlatformPage2ndSection";
+import { Security } from "@/deprecated/Roadmap/Security";
+import { PlatformHero } from "@/deprecated/components/PlatformHeroSection";
+import { TimeIsNowSection } from "@/components/PlatformPage2ndSection";
 import { IdeaToImpactSection } from "@/components/IdeaToImpactSection";
 import { FullControlSection } from "@/components/FullControlSection";
 import { AgentsThatExecuteSection } from "@/components/AgentThatExecutes";
@@ -17,43 +17,53 @@ export default function PlatformPage({ currentYear }: PlatformPageProps) {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Atlas - The Agentic OS",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web",
-    "description": "Atlas is fn7's Agentic Operating System that enables you to build bespoke hyperintelligent growth agents for Marketing, Sales, and CRM.",
-    "offers": {
+    name: "Atlas - The Agentic OS",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    description:
+      "Atlas is fn7's Agentic Operating System that enables you to build bespoke hyperintelligent growth agents for Marketing, Sales, and CRM.",
+    offers: {
       "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
+      price: "0",
+      priceCurrency: "USD",
     },
-    "creator": {
+    creator: {
       "@type": "Organization",
-      "name": "fn7",
-      "url": "https://www.fn7.io"
+      name: "fn7",
+      url: "https://www.fn7.io",
     },
-    "url": "https://www.fn7.io/atlas-platform",
-    "featureList": [
+    url: "https://www.fn7.io/atlas-platform",
+    featureList: [
       "Build custom growth agents",
       "Marketing automation",
       "Sales automation",
       "CRM integration",
       "Full control and transparency",
-      "Enterprise-grade security"
-    ]
+      "Enterprise-grade security",
+    ],
   };
 
   return (
     <>
       <Head>
         <title>Atlas Platform - The Agentic OS by fn7 | Build Growth Agents</title>
-        <meta name="description" content="Conquer growth with Atlas - The Agentic OS. Build bespoke hyperintelligent growth agents for Marketing, Sales, and CRM. Full control, enterprise security." />
-        <meta name="keywords" content="Atlas platform, Agentic OS, growth agents, marketing automation, sales automation, CRM automation, AI platform, fn7 Atlas" />
+        <meta
+          name="description"
+          content="Conquer growth with Atlas - The Agentic OS. Build bespoke hyperintelligent growth agents for Marketing, Sales, and CRM. Full control, enterprise security."
+        />
+        <meta
+          name="keywords"
+          content="Atlas platform, Agentic OS, growth agents, marketing automation, sales automation, CRM automation, AI platform, fn7 Atlas"
+        />
         <meta name="author" content="fn7" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {/* Open Graph Meta Tags */}
         <meta property="og:title" content="Atlas - The Agentic OS by fn7" />
-        <meta property="og:description" content="Build bespoke hyperintelligent growth agents for Marketing, Sales, and CRM with Atlas - The Agentic OS." />
+        <meta
+          property="og:description"
+          content="Build bespoke hyperintelligent growth agents for Marketing, Sales, and CRM with Atlas - The Agentic OS."
+        />
         <meta property="og:image" content="https://www.fn7.io/fn7_logo.jpeg" />
         <meta property="og:url" content="https://www.fn7.io/atlas-platform" />
         <meta property="og:type" content="website" />
@@ -62,7 +72,10 @@ export default function PlatformPage({ currentYear }: PlatformPageProps) {
         {/* Twitter Card Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Atlas - The Agentic OS by fn7" />
-        <meta name="twitter:description" content="Build bespoke hyperintelligent growth agents for Marketing, Sales, and CRM." />
+        <meta
+          name="twitter:description"
+          content="Build bespoke hyperintelligent growth agents for Marketing, Sales, and CRM."
+        />
         <meta name="twitter:image" content="https://www.fn7.io/fn7_logo.jpeg" />
         <meta name="twitter:site" content="@fn7io" />
 
@@ -83,10 +96,7 @@ export default function PlatformPage({ currentYear }: PlatformPageProps) {
         <meta property="article:publisher" content="https://www.fn7.io" />
 
         {/* Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       </Head>
 
       <div className="relative overflow-hidden">

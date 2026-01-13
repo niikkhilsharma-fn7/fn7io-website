@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import HomeScoutLoadingBox from "../HomeScoutLoadingBox";
+import { useSearchParams } from "next/navigation";
 
 type ValidationStep = {
   message: string;
@@ -116,9 +116,9 @@ export const WebsiteInputForm = ({
     const utmParams: Record<string, string> = {};
 
     if (searchParams) {
-      searchParams.forEach((value, key) => {
-        if (key.startsWith("utm_")) {
-          utmParams[key] = value;
+      Object.entries(searchParams).forEach(([key, value]) => {
+        if (typeof value === "string" && key.startsWith("utm_")) {
+          utmParams[key] = value as string;
         }
       });
     }

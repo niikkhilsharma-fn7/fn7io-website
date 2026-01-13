@@ -11,7 +11,7 @@ import {
   ProcessSection,
   HowItWorksSection,
   FinalCTASection,
-} from "@/components/PartnerProgram";
+} from "@/deprecated/PartnerProgram";
 
 interface PartnerProgramProps {
   currentYear: number;
@@ -21,33 +21,44 @@ export default function PartnerProgram({ currentYear }: PartnerProgramProps) {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "fn7 Partner Program",
-    "url": "https://www.fn7.io/partner-program",
-    "description": "Join the fn7 Partner Program for those already trusted by founders. You guide. We execute. Together, we move the needle.",
-    "isPartOf": {
+    name: "fn7 Partner Program",
+    url: "https://www.fn7.io/partner-program",
+    description:
+      "Join the fn7 Partner Program for those already trusted by founders. You guide. We execute. Together, we move the needle.",
+    isPartOf: {
       "@type": "WebSite",
-      "name": "fn7",
-      "url": "https://www.fn7.io"
+      name: "fn7",
+      url: "https://www.fn7.io",
     },
-    "about": {
+    about: {
       "@type": "Service",
-      "name": "fn7 Partner Program",
-      "description": "A selective partner network for incubators, influencers, and mentors who guide founders through early-stage challenges."
-    }
+      name: "fn7 Partner Program",
+      description:
+        "A selective partner network for incubators, influencers, and mentors who guide founders through early-stage challenges.",
+    },
   };
 
   return (
     <>
       <Head>
         <title>fn7 Partner Program - Amplify Your Founder&apos;s Impact | Join Our Selective Network</title>
-        <meta name="description" content="Join the fn7 Partner Program for those already trusted by founders. You guide. We execute. Together, we move the needle. Apply today." />
-        <meta name="keywords" content="partner program, startup incubator, founder mentoring, business acceleration, fn7 partners, startup ecosystem" />
+        <meta
+          name="description"
+          content="Join the fn7 Partner Program for those already trusted by founders. You guide. We execute. Together, we move the needle. Apply today."
+        />
+        <meta
+          name="keywords"
+          content="partner program, startup incubator, founder mentoring, business acceleration, fn7 partners, startup ecosystem"
+        />
         <meta name="author" content="fn7" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {/* Open Graph Meta Tags */}
         <meta property="og:title" content="fn7 Partner Program - Amplify Your Founder's Impact" />
-        <meta property="og:description" content="Join the fn7 Partner Program for those already trusted by founders. You guide. We execute. Together, we move the needle." />
+        <meta
+          property="og:description"
+          content="Join the fn7 Partner Program for those already trusted by founders. You guide. We execute. Together, we move the needle."
+        />
         <meta property="og:image" content="https://www.fn7.io/fn7_logo.jpeg" />
         <meta property="og:url" content="https://www.fn7.io/partner-program" />
         <meta property="og:type" content="website" />
@@ -56,7 +67,10 @@ export default function PartnerProgram({ currentYear }: PartnerProgramProps) {
         {/* Twitter Card Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="fn7 Partner Program - Amplify Your Founder's Impact" />
-        <meta name="twitter:description" content="Join the fn7 Partner Program for those already trusted by founders." />
+        <meta
+          name="twitter:description"
+          content="Join the fn7 Partner Program for those already trusted by founders."
+        />
         <meta name="twitter:image" content="https://www.fn7.io/fn7_logo.jpeg" />
         <meta name="twitter:site" content="@fn7io" />
 
@@ -73,10 +87,7 @@ export default function PartnerProgram({ currentYear }: PartnerProgramProps) {
         <meta name="format-detection" content="telephone=no" />
 
         {/* Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       </Head>
 
       <div className="flex overflow-hidden flex-col items-center bg-white">

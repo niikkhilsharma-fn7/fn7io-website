@@ -5,7 +5,7 @@ import VercelBuildOutputServer, {
   LogLevel,
   setLoggerProvider,
 } from "@fastly/serve-vercel-build-output";
-import { contentAssets, moduleAssets } from "./statics";
+import { contentAssets, moduleAssets } from "./statics.js";
 
 const loggerProvider = new ComputeJsConsoleLoggerProvider(LogLevel.DEBUG);
 setLoggerProvider(loggerProvider);
@@ -32,7 +32,7 @@ addEventListener("fetch", (event) => {
   console.log("Full URL:", event.request.url);
   console.log("Pathname:", url.pathname);
   console.log("========================");
-  
+
   if (event.request.url.includes("scraper/web/")) {
     console.log("next-compute-js: Request is for scraper redirect");
     event.respondWith(handleScraperRedirect(event));
@@ -52,13 +52,13 @@ async function handleRequest(event) {
 
 async function handleScraperRedirect(event) {
   console.log("Handling scraper redirect:", event.request.url);
-  
+
   const url = new URL(event.request.url);
   const urlPath = url.pathname;
-  
+
   // Extract the target URL from the path: scraper/web/abc.com -> abc.com
   const targetUrl = urlPath.split("/scraper/web/")[1];
-  
+
   if (!targetUrl) {
     return new Response("Invalid scraper URL", {
       status: 400,
@@ -67,22 +67,21 @@ async function handleScraperRedirect(event) {
       },
     });
   }
-  
+
   // Ensure the URL has a protocol
-  const redirectUrl = targetUrl.startsWith("http://") || targetUrl.startsWith("https://")
-    ? targetUrl
-    : `https://${targetUrl}`;
-  
+  const redirectUrl =
+    targetUrl.startsWith("http://") || targetUrl.startsWith("https://") ? targetUrl : `https://${targetUrl}`;
+
   console.log(`Redirecting scraper request to: ${redirectUrl}`);
-  
+
   // Perform the redirect with no-cache headers
   return new Response(null, {
     status: 302,
     headers: {
       Location: redirectUrl,
       "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
-      "Pragma": "no-cache",
-      "Expires": "0",
+      Pragma: "no-cache",
+      Expires: "0",
     },
   });
 }
@@ -132,22 +131,15 @@ async function getShortURLFromES(event) {
       Authorization: `ApiKey ${apiKey}`,
       "Content-Type": "application/json",
     },
-    backend:
-      isDevEnv == "true" ? "elasticsearch_host_dev" : "elasticsearch_host",
+    backend: isDevEnv == "true" ? "elasticsearch_host_dev" : "elasticsearch_host",
   });
 
   try {
     const esResponse = await fetch(esRequest);
-    console.log(
-      `Elasticsearch response for shortcode "${shortcode}":`,
-      esResponse.status,
-      esResponse.statusText
-    );
+    console.log(`Elasticsearch response for shortcode "${shortcode}":`, esResponse.status, esResponse.statusText);
 
     if (!esResponse.ok) {
-      console.error(
-        `Elasticsearch error: ${esResponse.status} ${esResponse.statusText}`
-      );
+      console.error(`Elasticsearch error: ${esResponse.status} ${esResponse.statusText}`);
 
       if (esResponse.status === 404) {
         return new Response(`Invalid Link ${env}`, { status: 404 });
@@ -190,8 +182,7 @@ async function getShortURLFromES(event) {
     console.error("Error fetching shortcode from Elasticsearch:", error);
     return new Response("Failed to process the request.", {
       status: 500,
-      headers: { "Content-Type": "application/json",
-       },
+      headers: { "Content-Type": "application/json" },
     });
   }
 }
