@@ -93,8 +93,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         {children}
         <OrganizationSchema />
-        <Footer />
         <SpeedInsights />
+        <Footer />
       </body>
     </html>
   );
