@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useSearchParams } from 'next/navigation';
-import { trackEvent, getCurrentUTMParams } from '@/utils/amplitude';
+import { useSearchParams } from "next/navigation";
+import { trackEvent, getCurrentUTMParams } from "@/deprecated/utils/amplitude";
 
 export const PlatformHero = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -10,12 +10,12 @@ export const PlatformHero = () => {
 
   // Function to preserve UTM parameters when redirecting to signup
   const getSignupUrlWithUTM = () => {
-    const baseUrl = 'https://www.fn7.io/get-form';
+    const baseUrl = "https://www.fn7.io/get-form";
     const utmParams: Record<string, string> = {};
 
     // Collect all UTM parameters from current URL
     searchParams.forEach((value, key) => {
-      if (key.startsWith('utm_')) {
+      if (key.startsWith("utm_")) {
         utmParams[key] = value;
       }
     });
@@ -36,16 +36,16 @@ export const PlatformHero = () => {
     };
 
     checkMobile();
-    window.addEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
 
-    return () => window.removeEventListener('resize', checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   return (
-    <section
-      className="relative flex flex-col items-center self-stretch pb-20 sm:pb-28 md:pb-32 lg:pb-40 w-full text-center bg-white overflow-hidden">
+    <section className="relative flex flex-col items-center self-stretch pb-20 sm:pb-28 md:pb-32 lg:pb-40 w-full text-center bg-white overflow-hidden">
       <h1 className="mt-20 sm:mt-24 md:mt-28 lg:mt-36 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-black max-w-[1200px] leading-tight px-6 md:px-8 lg:px-4">
-        Conquer Growth.<br />
+        Conquer Growth.
+        <br />
         With Atlas - The Agentic OS.
       </h1>
       <p className="mt-4 md:mt-5 text-lg sm:text-xl md:text-2xl font-normal text-black px-6 md:px-8 lg:px-4 max-w-[900px]">
@@ -53,11 +53,11 @@ export const PlatformHero = () => {
       </p>
       <button
         onClick={() => {
-          trackEvent('CTA Clicked', {
-            cta_name: 'Get Atlas Access',
-            page: 'Atlas Platform',
-            location: 'Hero Section',
-            ...getCurrentUTMParams()
+          trackEvent("CTA Clicked", {
+            cta_name: "Get Atlas Access",
+            page: "Atlas Platform",
+            location: "Hero Section",
+            ...getCurrentUTMParams(),
           });
           window.location.href = getSignupUrlWithUTM();
         }}

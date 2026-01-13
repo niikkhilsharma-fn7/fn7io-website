@@ -3,7 +3,7 @@ import * as React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { trackEvent, getCurrentUTMParams } from '@/utils/amplitude';
+import { trackEvent, getCurrentUTMParams } from "@/deprecated/utils/amplitude";
 
 export const PartnerApplicationForm = () => {
   const router = useRouter();
@@ -49,14 +49,14 @@ export const PartnerApplicationForm = () => {
     setIsSubmitting(true);
 
     // Track partner application form submission
-    trackEvent('Form Submitted', {
-      form_name: 'Partner Application',
-      page: 'Partner Application',
+    trackEvent("Form Submitted", {
+      form_name: "Partner Application",
+      page: "Partner Application",
       partner_type: partnerType,
       has_incubator_link: partnerType === "Incubator" && !!incubatorLink,
       privacy_consent: privacyConsent,
       marketing_consent: marketingConsent,
-      ...getCurrentUTMParams()
+      ...getCurrentUTMParams(),
     });
 
     try {
@@ -66,7 +66,7 @@ export const PartnerApplicationForm = () => {
         marketingConsent: marketingConsent,
         consentTimestamp: submittedAt,
       };
-      
+
       // Email HTML template for atlas@fn7.io
       const adminEmailHtml = `
         <!DOCTYPE html>
@@ -93,12 +93,16 @@ export const PartnerApplicationForm = () => {
                 <span class="label">Partner Type:</span>
                 <span class="value">${partnerType}</span>
               </div>
-              ${incubatorLink ? `
+              ${
+                incubatorLink
+                  ? `
               <div class="field">
                 <span class="label">Incubator Link:</span>
                 <span class="value"><a href="${incubatorLink}">${incubatorLink}</a></span>
               </div>
-              ` : ''}
+              `
+                  : ""
+              }
               <div class="field">
                 <span class="label">Name:</span>
                 <span class="value">${firstName} ${lastName}</span>
@@ -113,11 +117,11 @@ export const PartnerApplicationForm = () => {
               </div>
               <div class="field">
                 <span class="label">Privacy Consent:</span>
-                <span class="value">${consentData.privacyConsent ? 'Yes' : 'No'}</span>
+                <span class="value">${consentData.privacyConsent ? "Yes" : "No"}</span>
               </div>
               <div class="field">
                 <span class="label">Marketing Consent:</span>
-                <span class="value">${consentData.marketingConsent ? 'Yes' : 'No'}</span>
+                <span class="value">${consentData.marketingConsent ? "Yes" : "No"}</span>
               </div>
               <div class="footer">
                 <p>This application was submitted through the FN7 Partner Program form.</p>
@@ -199,30 +203,30 @@ export const PartnerApplicationForm = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(adminEmailPayload),
       });
-      
+
       const adminData = await adminEmailResponse.json();
-      
+
       // Send applicant confirmation email
       const applicantEmailResponse = await fetch("https://helix.app.fn7.io/api/send-email", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(applicantEmailPayload),
       });
-      
+
       const applicantData = await applicantEmailResponse.json();
-      
+
       // Always navigate to success page - matching get-form pattern
       setIsSubmitting(false);
-      
+
       // Track successful submission
-      trackEvent('Form Submission Success', {
-        form_name: 'Partner Application',
-        page: 'Partner Application',
+      trackEvent("Form Submission Success", {
+        form_name: "Partner Application",
+        page: "Partner Application",
         partner_type: partnerType,
-        ...getCurrentUTMParams()
+        ...getCurrentUTMParams(),
       });
-      
-      router.push('/submitpage');
+
+      router.push("/submitpage");
     } catch (error) {
       setIsSubmitting(false);
       alert("Error occurred. Please try again after some time.");
@@ -240,9 +244,7 @@ export const PartnerApplicationForm = () => {
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Partner Type Selection */}
             <div>
-              <label className="text-xl font-medium text-black mb-4 block max-md:text-lg">
-                You are:
-              </label>
+              <label className="text-xl font-medium text-black mb-4 block max-md:text-lg">You are:</label>
               <div className="flex gap-8 justify-center max-md:flex-col max-md:gap-4">
                 <label className="flex items-center cursor-pointer">
                   <input
@@ -355,7 +357,7 @@ export const PartnerApplicationForm = () => {
             {/* GDPR Consent Section */}
             <div className="border-t pt-6 space-y-4">
               <h3 className="text-lg font-medium text-black mb-3 max-md:text-base">Data Protection & Privacy</h3>
-              
+
               {/* Privacy Policy Consent (Required) */}
               <div className="flex items-start">
                 <input
@@ -367,16 +369,20 @@ export const PartnerApplicationForm = () => {
                     setConsentError(false);
                   }}
                   className={`mt-1 h-4 w-4 text-purple-600 border-gray-300 rounded focus:ring-2 focus:ring-pink-400 ${
-                    consentError ? 'border-red-500' : ''
+                    consentError ? "border-red-500" : ""
                   }`}
                   required
                 />
                 <label htmlFor="partner-privacy-consent" className="ml-3 text-sm text-gray-700 max-md:text-xs">
-                  <span className="text-red-500">*</span> I have read and agree to the{' '}
-                  <Link href="/privacy-policy" target="_blank" className="text-purple-600 hover:text-purple-700 underline">
+                  <span className="text-red-500">*</span> I have read and agree to the{" "}
+                  <Link
+                    href="/privacy-policy"
+                    target="_blank"
+                    className="text-purple-600 hover:text-purple-700 underline"
+                  >
                     Privacy Policy
-                  </Link>{' '}
-                  and{' '}
+                  </Link>{" "}
+                  and{" "}
                   <Link href="/tnc" target="_blank" className="text-purple-600 hover:text-purple-700 underline">
                     Terms of Service
                   </Link>
@@ -399,7 +405,7 @@ export const PartnerApplicationForm = () => {
                   className="mt-1 h-4 w-4 text-purple-600 border-gray-300 rounded focus:ring-2 focus:ring-pink-400"
                 />
                 <label htmlFor="partner-marketing-consent" className="ml-3 text-sm text-gray-700 max-md:text-xs">
-                  I would like to receive partner updates, opportunities, and marketing communications from FN7 
+                  I would like to receive partner updates, opportunities, and marketing communications from FN7
                   (optional - you can unsubscribe at any time)
                 </label>
               </div>

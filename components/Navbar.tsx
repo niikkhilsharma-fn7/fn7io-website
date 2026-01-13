@@ -1,210 +1,54 @@
-"use client";
-
 import Link from "next/link";
-import Image from "next/image";
-import { Menu, X } from "lucide-react";
-import { useState, useEffect, useCallback } from "react";
-import { useRouter } from "next/router";
-import React from "react";
-import { usePreserveQueryParams } from "@/hooks/usePreserveQueryParams";
-import { trackSignupClick, getCurrentUTMParams } from "@/utils/amplitude";
 
 export default function Navbar() {
-
-  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isTablet, setIsTablet] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const router = useRouter();
-  const { navigateWithQuery, getLinkWithQuery } = usePreserveQueryParams();
-  const handleGetStarted = useCallback(
-    (options?: { closeMenu?: boolean }) => {
-      if (options?.closeMenu) {
-        setMobileMenuOpen(false);
-      }
-      
-      const scrollToHero = () => {
-        const heroElement = document.getElementById('hero-section');
-        if (heroElement) {
-          heroElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        window.dispatchEvent(new Event('trigger-hero-input'));
-      };
-
-      if (router.pathname === '/') {
-        // Already on index page, scroll immediately
-        scrollToHero();
-      } else {
-        // Navigate to index page first, then scroll after navigation
-        navigateWithQuery('/');
-        // Wait for navigation to complete before scrolling
-        setTimeout(() => {
-          scrollToHero();
-        }, 100);
-      }
-    },
-    [router.pathname, navigateWithQuery]
-  );
-
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      setIsMobile(width < 768);
-      setIsTablet(width >= 768 && width < 1024);
-      setIsDesktop(width >= 1024);
-    };
-
-    const handleScroll = () => {
-      if (window.innerWidth >= 768) {
-        setIsScrolled(window.scrollY > 0);
-      }
-    };
-
-    handleResize();
-    handleScroll();
-
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const links = [
-    { href: "/", label: "Home" },
-    { href: "/roadmap", label: "Roadmap" },
-    { href: "/blogs", label: "Blogs" },
-    { href: "/partner-program", label: "Partner" },
-    { href: "/pricing", label: "Pricing" },
-  ];
-
-  if ((isDesktop || isTablet) && isScrolled) {
-    return (
-      <div className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 ${isTablet ? 'w-[90%] max-w-[700px]' : 'w-[800px]'} bg-black rounded-[10px] flex items-center justify-between ${isTablet ? 'gap-4' : 'gap-[60px]'} px-4 py-2 animate-slide-down`}>
-        <Image
-          className="cursor-pointer"
-          src="/fn7_nav_logo_white.svg"
-          alt="Logo"
-          width={40}
-          height={40}
-          onClick={() => navigateWithQuery("/")}
-        />
-        <div className={`flex ${isTablet ? 'gap-3' : 'gap-[25px]'} items-center`}>
-          {links.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={getLinkWithQuery(href)}
-              className={`${isTablet ? 'text-sm' : 'text-md'} text-white hover:font-bold cursor-pointer ${
-                router.pathname === href ? 'font-bold' : ''
-              }`}
-            >
-              {label}
-            </Link>
-          ))}
-        </div>
-        <button
-          onClick={() => {
-            trackSignupClick('Navbar - Scrolled', getCurrentUTMParams());
-            handleGetStarted();
-          }}
-          className={`bg-gradient-to-r from-[#ff482ccc] to-[#a245eecc] text-white ${isTablet ? 'w-[140px] h-[32px] text-base' : 'w-[180px] h-[35px] text-lg'} rounded-xl leading-6 whitespace-nowrap`}
-        >
-         Get Started
-        </button>
-      </div>
-    );
-  }
-
   return (
-    <div
-      className={`sticky top-0 z-50 ${isMobile ? "bg-white" : isTablet ? "px-6 bg-white" : "px-10 bg-white"}`}
-    >
-      <nav
-        className={`flex items-center justify-between h-[75px] md:h-[80px] px-3 md:px-0 relative ${
-          isMobile ? "bg-black" : "bg-[#ffffff20]"
-        } transition-all duration-300`}
-      >
-        <Image
-          className="hidden md:block md:absolute md:top-1/2 md:left-0 md:-translate-y-1/2 cursor-pointer"
-          src="/fn7_nav_logo.svg"
-          alt="Logo"
-          width={isTablet ? 45 : 50}
-          height={isTablet ? 45 : 50}
-          onClick={() => navigateWithQuery("/")}
-        />
-        <Image
-          className="md:hidden cursor-pointer"
-          src="/fn7_nav_logo_white.svg"
-          alt="Logo"
-          width={40}
-          height={40}
-          onClick={() => navigateWithQuery("/")}
-        />
-
-        <div className="hidden md:block md:grow md:w-full">
-          <div className="flex justify-center items-center">
-            <div className={`hidden md:flex justify-center items-center ${isTablet ? 'gap-4' : 'gap-[30px]'}`}>
-              {links.map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={getLinkWithQuery(href)}
-                  className={`${isTablet ? 'text-base' : 'text-lg'} text-black hover:font-bold cursor-pointer ${
-                    router.pathname === href ? 'font-bold' : ''
-                  }`}
-                >
-                  {label}
-                </Link>
-              ))}
-            </div>
+    <>
+      <div className="fixed inset-0 z-[-1] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-50 via-white to-white pointer-events-none" />
+      <nav className="z-50 w-full mx-auto px-6 py-6 flex justify-between items-center bg-white/60 backdrop-blur-md sticky top-0 border-b border-slate-100">
+        <Link href={"/"} className="flex items-center gap-3 cursor-pointer group">
+          <div className="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center shadow-lg group-hover:bg-blue-600 transition-colors duration-300">
+            {/* Simple Logo Icon */}
+            <svg
+              className="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
+            </svg>
           </div>
+          <span className="text-xl font-bold tracking-tight text-slate-900">Scout7</span>
+        </Link>
+        <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-500">
+          <a className="hover:text-blue-600 transition-colors" href="#">
+            Product
+          </a>
+          <a className="hover:text-blue-600 transition-colors" href="#">
+            Solutions
+          </a>
+          <a className="hover:text-blue-600 transition-colors" href="#">
+            Pricing
+          </a>
+          <a className="hover:text-blue-600 transition-colors" href="#">
+            Resources
+          </a>
         </div>
-
-        <div className="flex items-center gap-x-4">
-          <button
-            onClick={() => {
-              trackSignupClick('Navbar - Main', getCurrentUTMParams());
-              handleGetStarted();
-            }}
-            className={`bg-white md:bg-black text-black md:text-white text-sm md:text-base px-2 md:px-3 py-2 rounded-lg whitespace-nowrap static md:absolute md:top-1/2 md:right-0 md:-translate-y-1/2 cursor-pointer`}>
-             Get Started
-          </button>
-
-          <button
-            onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white cursor-pointer"
+        <div className="flex items-center gap-4">
+          <a
+            className="text-sm font-semibold text-slate-600 hover:text-blue-600 hidden sm:block transition-colors"
+            href="#"
           >
-            {isMobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
-          </button>
+            Log in
+          </a>
+          <a
+            className="text-sm font-bold bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-slate-900 transition-all shadow-lg shadow-blue-500/20 transform hover:-translate-y-0.5"
+            href="#"
+          >
+            Get Started
+          </a>
         </div>
-
-        {isMobileMenuOpen && (
-          <div className="absolute top-[85px] right-0 bg-black text-white rounded-2xl p-6 flex flex-wrap flex-col gap-4 z-50 md:hidden w-full transition-opacity duration-300">
-            {links.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={getLinkWithQuery(href)}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`text-xl cursor-pointer ${
-                  router.pathname === href ? 'font-bold' : ''
-                }`}
-              >
-                {label}
-              </Link>
-            ))}
-            <button
-              onClick={() => {
-                trackSignupClick('Navbar - Mobile Menu', getCurrentUTMParams());
-                handleGetStarted({ closeMenu: true });
-              }}
-              className="bg-white text-black text-lg rounded-lg py-3 px-6 cursor-pointer">
-             Get Started
-            </button>
-          </div>
-        )}
       </nav>
-    </div>
+    </>
   );
 }

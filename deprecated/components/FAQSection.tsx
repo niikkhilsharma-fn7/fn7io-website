@@ -12,44 +12,47 @@ interface FAQItem {
 const faqs: FAQItem[] = [
   {
     question: "How does Scout find qualified prospects?",
-    answer: "Scout listens across Reddit, LinkedIn and X for real time conversations where people are describing problems your product solves. It filters out noise and surfaces posts with clear buying intent or pain points so every lead is relevant."
+    answer:
+      "Scout listens across Reddit, LinkedIn and X for real time conversations where people are describing problems your product solves. It filters out noise and surfaces posts with clear buying intent or pain points so every lead is relevant.",
   },
   {
     question: "Do I need to connect my social accounts?",
-    answer: "Yes. Connecting your accounts allows Scout to draft replies in your voice and lets you approve and post directly which saves you the manual work."
+    answer:
+      "Yes. Connecting your accounts allows Scout to draft replies in your voice and lets you approve and post directly which saves you the manual work.",
   },
   {
     question: "How many posts can Scout find in 1 day?",
-    answer: "Scout surfaces up to 20 high intent opportunities per platform each day based on your product, category and target audience."
+    answer:
+      "Scout surfaces up to 20 high intent opportunities per platform each day based on your product, category and target audience.",
   },
   {
     question: "How fast can I see results?",
-    answer: "From day one. You will see conversations ready for engagement immediately after setup and early traffic can start flowing within hours of posting."
+    answer:
+      "From day one. You will see conversations ready for engagement immediately after setup and early traffic can start flowing within hours of posting.",
   },
   {
     question: "Do I need an analytical tool to track results?",
-    answer: "No. Scout includes an impact dashboard showing clicks, traffic sources and top performing replies all in one place."
+    answer:
+      "No. Scout includes an impact dashboard showing clicks, traffic sources and top performing replies all in one place.",
   },
   {
     question: "What is the price of Scout?",
-    answer: "Plans start from our Basic tier for Reddit and LinkedIn and a Pro tier adds X integration and advanced analytics. Pricing depends on the plan you choose.",
-    hasLink: true
+    answer:
+      "Plans start from our Basic tier for Reddit and LinkedIn and a Pro tier adds X integration and advanced analytics. Pricing depends on the plan you choose.",
+    hasLink: true,
   },
   {
     question: "Do I need to message people manually?",
-    answer: "No. Scout drafts replies for every opportunity. You simply review, approve and post or tweak them to add your personal touch."
-  }
+    answer:
+      "No. Scout drafts replies for every opportunity. You simply review, approve and post or tweak them to add your personal touch.",
+  },
 ];
 
 export const FAQSection = ({}: FAQSectionProps) => {
   const [expandedItems, setExpandedItems] = useState<number[]>([]);
 
   const toggleExpand = (index: number) => {
-    setExpandedItems(prev =>
-      prev.includes(index)
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
-    );
+    setExpandedItems((prev) => (prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]));
   };
 
   return (
@@ -71,7 +74,7 @@ export const FAQSection = ({}: FAQSectionProps) => {
                 <span className="pr-4">{faq.question}</span>
                 <svg
                   className={`w-6 h-6 flex-shrink-0 transition-transform ${
-                    expandedItems.includes(index) ? 'rotate-180' : ''
+                    expandedItems.includes(index) ? "rotate-180" : ""
                   }`}
                   fill="none"
                   stroke="currentColor"
@@ -82,14 +85,14 @@ export const FAQSection = ({}: FAQSectionProps) => {
                     strokeLinejoin="round"
                     strokeWidth={2}
                     d="M12 6v12m6-6H6"
-                    className={expandedItems.includes(index) ? 'hidden' : 'block'}
+                    className={expandedItems.includes(index) ? "hidden" : "block"}
                   />
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
                     d="M18 12H6"
-                    className={expandedItems.includes(index) ? 'block' : 'hidden'}
+                    className={expandedItems.includes(index) ? "block" : "hidden"}
                   />
                 </svg>
               </button>
@@ -97,7 +100,10 @@ export const FAQSection = ({}: FAQSectionProps) => {
                 <div className="px-8 py-6 text-lg text-gray-600 bg-gray-50 border-t border-gray-100 max-md:px-5 max-md:text-base">
                   {faq.answer}
                   {faq.hasLink && (
-                    <Link href="/pricing" className="inline-flex items-center ml-2 text-blue-600 hover:text-blue-700 font-medium">
+                    <Link
+                      href="/pricing"
+                      className="inline-flex items-center ml-2 text-blue-600 hover:text-blue-700 font-medium"
+                    >
                       View pricing →
                     </Link>
                   )}

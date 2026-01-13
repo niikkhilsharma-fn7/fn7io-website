@@ -5,7 +5,6 @@ import { Security } from "@/components/Roadmap/Security";
 import { Agents } from "@/components/Roadmap/Agents";
 import { Fn7Need } from "@/components/Roadmap/Fn7Need";
 import { RiseOfAgenticAI } from "@/components/Roadmap/RiseOfAgenticAI";
-import Image from "next/image";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 
@@ -17,33 +16,40 @@ export default function Roadmap({ currentYear }: RoadmapProps) {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "fn7",
-    "url": "https://www.fn7.io",
-    "logo": "https://www.fn7.io/fn7_nav_logo.svg",
-    "description": "fn7 provides 7 AI agents that automate your go-to-market strategy, scaling your business 24/7 with cutting-edge AI technology.",
-    "sameAs": [
-      "https://x.com/fn7_io",
-      "https://linkedin.com/company/fn7io"
-    ],
-    "potentialAction": {
+    name: "fn7",
+    url: "https://www.fn7.io",
+    logo: "https://www.fn7.io/fn7_nav_logo.svg",
+    description:
+      "fn7 provides 7 AI agents that automate your go-to-market strategy, scaling your business 24/7 with cutting-edge AI technology.",
+    sameAs: ["https://x.com/fn7_io", "https://linkedin.com/company/fn7io"],
+    potentialAction: {
       "@type": "SearchAction",
-      "target": "https://www.fn7.io/search?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+      target: "https://www.fn7.io/search?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
   };
 
   return (
     <>
       <Head>
         <title>fn7 Roadmap - Your Go-To-Market On Autopilot | 7 AI Agents Scaling 24/7</title>
-        <meta name="description" content="Scale your business 24/7 with fn7's 7 AI agents. Automate your go-to-market strategy with cutting-edge AI technology. Get started today." />
-        <meta name="keywords" content="AI agents, go-to-market automation, business scaling, AI automation, sales automation, marketing automation, fn7" />
+        <meta
+          name="description"
+          content="Scale your business 24/7 with fn7's 7 AI agents. Automate your go-to-market strategy with cutting-edge AI technology. Get started today."
+        />
+        <meta
+          name="keywords"
+          content="AI agents, go-to-market automation, business scaling, AI automation, sales automation, marketing automation, fn7"
+        />
         <meta name="author" content="fn7" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {/* Open Graph Meta Tags */}
         <meta property="og:title" content="fn7 Roadmap - Your Go-To-Market On Autopilot | 7 AI Agents" />
-        <meta property="og:description" content="Scale your business 24/7 with fn7's 7 AI agents. Automate your go-to-market strategy with cutting-edge AI technology." />
+        <meta
+          property="og:description"
+          content="Scale your business 24/7 with fn7's 7 AI agents. Automate your go-to-market strategy with cutting-edge AI technology."
+        />
         <meta property="og:image" content="https://www.fn7.io/fn7_logo.jpeg" />
         <meta property="og:url" content="https://www.fn7.io/roadmap" />
         <meta property="og:type" content="website" />
@@ -69,10 +75,7 @@ export default function Roadmap({ currentYear }: RoadmapProps) {
         <meta name="format-detection" content="telephone=no" />
 
         {/* Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       </Head>
 
       <div className="relative overflow-x-hidden">

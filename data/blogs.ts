@@ -26,8 +26,7 @@ export const blogsData: Blog[] = [
     id: "beyond-chatgpt-agentic-ai-revolution",
     title: "Beyond ChatGPT: Why Agentic AI is the Real Revolution",
     slug: "beyond-chatgpt-agentic-ai-revolution",
-    excerpt:
-      "The $47 Billion Blind Spot: Why Most AI Implementations Are Missing the Point",
+    excerpt: "The $47 Billion Blind Spot: Why Most AI Implementations Are Missing the Point",
     content: `
       <h2>The $47 Billion Blind Spot: Why Most AI Implementations Are Missing the Point</h2>
       <p>Let's start with some hard numbers that should wake up every tech executive. Agentic AI market value stood at $5.1 billion in 2024, but it's projected to explode to $47 billion by 2030—representing a staggering 44% compound annual growth rate. Yet despite this massive opportunity, 75% of marketers using AI tools are still stuck in the reactive mindset of traditional generative AI.The problem? Most organizations are treating AI like a fancy search engine or content generator when they should be building autonomous agents that can independently solve business problems.Consider this: ChatGPT can write you a brilliant marketing email, but it can't decide when to send it, segment your audience based on real-time behavior data, A/B test different versions, analyze the results, and automatically optimize the next campaign. That's the difference between generative AI and agentic AI—one creates content, the other creates outcomes.</p>
@@ -139,14 +138,12 @@ export const blogsData: Blog[] = [
       "AI revolution",
       "intelligent automation",
     ],
-    canonicalUrl:
-      "https://www.fn7.io/blogs/beyond-chatgpt-agentic-ai-revolution",
+    canonicalUrl: "https://www.fn7.io/blogs/beyond-chatgpt-agentic-ai-revolution",
     ogImage: "/blog_1_image_2.png",
   },
   {
     id: "million-dollar-gtm-mistake-solo-founders",
-    title:
-      "The Million-Dollar GTM Mistake: Why 87% of Solo Founders Never Break $10K MRR",
+    title: "The Million-Dollar GTM Mistake: Why 87% of Solo Founders Never Break $10K MRR",
     slug: "million-dollar-gtm-mistake-solo-founders",
     excerpt: "The $10K MRR Death Valley: Where Dreams Go to Die",
     content: `
@@ -309,23 +306,13 @@ export const blogsData: Blog[] = [
     featuredImage: "/gtm_failed.png",
     metaDescription:
       "Discover why 87% of solo founders never break $10K MRR and learn the critical GTM mistake that separates success from failure in the startup world.",
-    keywords: [
-      "GTM strategy",
-      "10K MRR",
-      "solo founder",
-      "startup marketing",
-      "SaaS growth",
-      "go-to-market",
-      "fn7",
-    ],
-    canonicalUrl:
-      "https://www.fn7.io/blogs/million-dollar-gtm-mistake-solo-founders",
+    keywords: ["GTM strategy", "10K MRR", "solo founder", "startup marketing", "SaaS growth", "go-to-market", "fn7"],
+    canonicalUrl: "https://www.fn7.io/blogs/million-dollar-gtm-mistake-solo-founders",
     ogImage: "/gtm_failed.png",
   },
   {
     id: "great-unbundling-ai-destroys-software-stack",
-    title:
-      "The Great Unbundling: How AI Will Destroy the $400B Software Stack and Rebuild It as Intelligence Services",
+    title: "The Great Unbundling: How AI Will Destroy the $400B Software Stack and Rebuild It as Intelligence Services",
     slug: "great-unbundling-ai-destroys-software-stack",
     excerpt: "The Tectonic Shift: From Software to Intelligence Services",
     content: `
@@ -448,13 +435,7 @@ export const blogsData: Blog[] = [
     publishedDate: "2025-05-26",
     readTime: "14 min read",
     category: "Technology",
-    tags: [
-      "AI",
-      "Software",
-      "SaaS",
-      "Digital Transformation",
-      "Future of Tech",
-    ],
+    tags: ["AI", "Software", "SaaS", "Digital Transformation", "Future of Tech"],
     thumbnail: "/blog3.png",
     featuredImage: "/blog3.png",
     metaDescription:
@@ -469,14 +450,12 @@ export const blogsData: Blog[] = [
       "digital transformation",
       "AI software market",
     ],
-    canonicalUrl:
-      "https://www.fn7.io/blogs/great-unbundling-ai-destroys-software-stack",
+    canonicalUrl: "https://www.fn7.io/blogs/great-unbundling-ai-destroys-software-stack",
     ogImage: "/blog3.png",
   },
   {
     id: "invisible-copilot-agentic-ai-decentralizes-decisions",
-    title:
-      "The Invisible Co-Pilot: How Agentic AI Decentralizes Decision-Making and Empowers Every Team",
+    title: "The Invisible Co-Pilot: How Agentic AI Decentralizes Decision-Making and Empowers Every Team",
     slug: "invisible-copilot-agentic-ai-decentralizes-decisions",
     excerpt:
       "How visionary leaders are moving beyond traditional hierarchies to create autonomous, AI-augmented organizations that outperform, out-innovate, and out-execute the competition",
@@ -691,13 +670,7 @@ export const blogsData: Blog[] = [
     publishedDate: "2025-07-25",
     readTime: "15 min read",
     category: "AI Leadership",
-    tags: [
-      "Agentic AI",
-      "Leadership",
-      "Decision Making",
-      "AI Transformation",
-      "Organizational Change",
-    ],
+    tags: ["Agentic AI", "Leadership", "Decision Making", "AI Transformation", "Organizational Change"],
     thumbnail: "/july-25-Blog1.png",
     featuredImage: "/july-25-Blog1.png",
     metaDescription:
@@ -712,14 +685,12 @@ export const blogsData: Blog[] = [
       "autonomous AI",
       "AI agents",
     ],
-    canonicalUrl:
-      "https://www.fn7.io/blogs/invisible-copilot-agentic-ai-decentralizes-decisions",
+    canonicalUrl: "https://www.fn7.io/blogs/invisible-copilot-agentic-ai-decentralizes-decisions",
     ogImage: "/july-25-Blog1.png",
   },
   {
     id: "chaos-to-clarity-ai-powered-revenue-intelligence",
-    title:
-      "From Chaos to Clarity: Architecting Your GTM Strategy with AI-Powered Revenue Intelligence",
+    title: "From Chaos to Clarity: Architecting Your GTM Strategy with AI-Powered Revenue Intelligence",
     slug: "chaos-to-clarity-ai-powered-revenue-intelligence",
     excerpt:
       "How visionary leaders are replacing fragmented tool stacks with coordinated AI systems that deliver predictable revenue growth and unparalleled market visibility",
@@ -933,14 +904,7 @@ export const blogsData: Blog[] = [
     publishedDate: "2025-07-25",
     readTime: "18 min read",
     category: "Revenue Intelligence",
-    tags: [
-      "GTM Strategy",
-      "Revenue Intelligence",
-      "AI",
-      "Sales",
-      "Marketing",
-      "SaaS",
-    ],
+    tags: ["GTM Strategy", "Revenue Intelligence", "AI", "Sales", "Marketing", "SaaS"],
     thumbnail: "/july-25-Blog2.png",
     featuredImage: "/july-25-Blog2.png",
     metaDescription:
@@ -955,14 +919,12 @@ export const blogsData: Blog[] = [
       "SaaS tools",
       "predictive analytics",
     ],
-    canonicalUrl:
-      "https://www.fn7.io/blogs/chaos-to-clarity-ai-powered-revenue-intelligence",
+    canonicalUrl: "https://www.fn7.io/blogs/chaos-to-clarity-ai-powered-revenue-intelligence",
     ogImage: "/july-25-Blog2.png",
   },
   {
     id: "human-ai-symbiosis-sales-reps-thrive-agentic-ai",
-    title:
-      "The Human-AI Symbiosis: Why Your Best Sales Reps Will Thrive, Not Be Replaced, by Agentic AI",
+    title: "The Human-AI Symbiosis: Why Your Best Sales Reps Will Thrive, Not Be Replaced, by Agentic AI",
     slug: "human-ai-symbiosis-sales-reps-thrive-agentic-ai",
     excerpt:
       "How top performers are leveraging AI to become superhuman sellers while strengthening the uniquely human skills that close complex deals",
@@ -1187,13 +1149,7 @@ export const blogsData: Blog[] = [
     publishedDate: "2025-07-26",
     readTime: "20 min read",
     category: "Sales & AI",
-    tags: [
-      "Sales",
-      "AI",
-      "Human-AI Collaboration",
-      "Sales Technology",
-      "Future of Sales",
-    ],
+    tags: ["Sales", "AI", "Human-AI Collaboration", "Sales Technology", "Future of Sales"],
     thumbnail: "/july-26-Blog1.png",
     featuredImage: "/july-26-Blog1.png",
     metaDescription:
@@ -1208,14 +1164,12 @@ export const blogsData: Blog[] = [
       "AI-enhanced selling",
       "future of sales",
     ],
-    canonicalUrl:
-      "https://www.fn7.io/blogs/human-ai-symbiosis-sales-reps-thrive-agentic-ai",
+    canonicalUrl: "https://www.fn7.io/blogs/human-ai-symbiosis-sales-reps-thrive-agentic-ai",
     ogImage: "/july-26-Blog1.png",
   },
   {
     id: "beyond-hype-realistic-expectations-agentic-ai-saas",
-    title:
-      "Beyond the Hype: Realistic Expectations for Agentic AI in Your SaaS Business (And How to Achieve Them)",
+    title: "Beyond the Hype: Realistic Expectations for Agentic AI in Your SaaS Business (And How to Achieve Them)",
     slug: "beyond-hype-realistic-expectations-agentic-ai-saas",
     excerpt:
       "Why the most successful AI implementations focus on solving specific problems rather than chasing futuristic visions—and how to avoid the pitfalls that derail 70% of AI projects",
@@ -1523,13 +1477,7 @@ export const blogsData: Blog[] = [
     publishedDate: "2025-07-26",
     readTime: "22 min read",
     category: "AI Strategy",
-    tags: [
-      "AI Implementation",
-      "SaaS",
-      "Strategy",
-      "AI Adoption",
-      "Business Transformation",
-    ],
+    tags: ["AI Implementation", "SaaS", "Strategy", "AI Adoption", "Business Transformation"],
     thumbnail: "/july-26-Blog2.png",
     featuredImage: "/july-26-Blog2.png",
     metaDescription:
@@ -1544,14 +1492,12 @@ export const blogsData: Blog[] = [
       "AI governance",
       "pragmatic AI",
     ],
-    canonicalUrl:
-      "https://www.fn7.io/blogs/beyond-hype-realistic-expectations-agentic-ai-saas",
+    canonicalUrl: "https://www.fn7.io/blogs/beyond-hype-realistic-expectations-agentic-ai-saas",
     ogImage: "/july-26-Blog2.png",
   },
   {
     id: "top-10-ai-social-listening-tools-2025-big-bang-gang",
-    title:
-      "Top 10 AI Social Listening Tools in 2025 - The Big Bang Gang Discusses",
+    title: "Top 10 AI Social Listening Tools in 2025 - The Big Bang Gang Discusses",
     slug: "top-10-ai-social-listening-tools-2025-big-bang-gang",
     excerpt:
       "The Big Bang Theory gang breaks down the top AI social listening tools for 2025, from Scout's laser-focused lead generation to enterprise giants like Brandwatch, in their signature nerdy style.",
@@ -1870,14 +1816,7 @@ export const blogsData: Blog[] = [
     publishedDate: "2025-08-21",
     readTime: "15 min read",
     category: "Social Listening",
-    tags: [
-      "AI Tools",
-      "Social Listening",
-      "Marketing",
-      "Lead Generation",
-      "Scout",
-      "Big Bang Theory",
-    ],
+    tags: ["AI Tools", "Social Listening", "Marketing", "Lead Generation", "Scout", "Big Bang Theory"],
     thumbnail: "/blog-social-listening-tools.webp",
     featuredImage: "/blog-social-listening-tools.webp",
     metaDescription:
@@ -1893,8 +1832,7 @@ export const blogsData: Blog[] = [
       "fn7",
       "marketing tools",
     ],
-    canonicalUrl:
-      "https://www.fn7.io/blogs/top-10-ai-social-listening-tools-2025-big-bang-gang",
+    canonicalUrl: "https://www.fn7.io/blogs/top-10-ai-social-listening-tools-2025-big-bang-gang",
     ogImage: "/blog-social-listening-tools.webp",
   },
 ];

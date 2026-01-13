@@ -1,16 +1,16 @@
 import Image from "next/image";
-import { useCallback } from 'react';
-import { trackSignupClick, getCurrentUTMParams } from '@/utils/amplitude';
+import { useCallback } from "react";
+import { trackSignupClick, getCurrentUTMParams } from "@/deprecated/utils/amplitude";
 
 interface CTASectionProps {}
 
 export const CTASection = ({}: CTASectionProps) => {
   const handleGetStarted = useCallback(() => {
-    const heroElement = document.getElementById('hero-section');
+    const heroElement = document.getElementById("hero-section");
     if (heroElement) {
-      heroElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      heroElement.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-    window.dispatchEvent(new Event('trigger-hero-input'));
+    window.dispatchEvent(new Event("trigger-hero-input"));
   }, []);
 
   return (
@@ -19,12 +19,13 @@ export const CTASection = ({}: CTASectionProps) => {
       <div className="hidden md:flex items-center gap-12 w-full">
         {/* Left side content - 40% */}
         <div className="w-[40%]">
-          <p className="text-2xl font-semibold mb-4">These metrics can be yours. <br/>
+          <p className="text-2xl font-semibold mb-4">
+            These metrics can be yours. <br />
             Scout puts you where your buyers are.
           </p>
           <button
             onClick={() => {
-              trackSignupClick('CTA Section - Desktop', getCurrentUTMParams());
+              trackSignupClick("CTA Section - Desktop", getCurrentUTMParams());
               handleGetStarted();
             }}
             className="mt-8 px-8 py-4 bg-black text-white text-lg font-medium rounded-lg hover:bg-gray-800 transition-colors"
@@ -53,26 +54,20 @@ export const CTASection = ({}: CTASectionProps) => {
         {/* Image First */}
         <div className="w-full mb-8">
           <div className="overflow-hidden bg-white">
-            <Image
-              src="/images/CTAImage.png"
-              alt="CTA Dashboard"
-              width={639}
-              height={308}
-              className="w-full h-auto"
-            />
+            <Image src="/images/CTAImage.png" alt="CTA Dashboard" width={639} height={308} className="w-full h-auto" />
           </div>
         </div>
 
         {/* Description */}
         <p className="text-xl font-semibold mb-6 text-center">
-          These metrics can be yours. <br/>
+          These metrics can be yours. <br />
           Scout puts you where your buyers are.
         </p>
 
         {/* Button */}
         <button
           onClick={() => {
-            trackSignupClick('CTA Section - Mobile', getCurrentUTMParams());
+            trackSignupClick("CTA Section - Mobile", getCurrentUTMParams());
             handleGetStarted();
           }}
           className="px-6 py-3 bg-black text-white text-base font-medium rounded-lg hover:bg-gray-800 transition-colors"

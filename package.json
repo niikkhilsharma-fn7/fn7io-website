@@ -14,13 +14,16 @@
   "description": "Next.js application with environment-based configuration. Uses .env.development for dev and .env.production for production builds. See README.md for environment variable setup.",
   "dependencies": {
     "@amplitude/analytics-browser": "^2.23.5",
+    "@hookform/resolvers": "^5.2.2",
     "framer-motion": "^12.15.0",
     "lucide-react": "^0.511.0",
     "next": "13.4.6",
     "react": "18.2",
     "react-dom": "18.2",
+    "react-hook-form": "^7.71.0",
     "react-icons": "^5.5.0",
-    "swiper": "^11.2.8"
+    "swiper": "^11.2.8",
+    "zod": "^4.3.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

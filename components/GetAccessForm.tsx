@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { trackEvent, getCurrentUTMParams } from '@/utils/amplitude';
+import { trackEvent, getCurrentUTMParams } from "@/deprecated/utils/amplitude";
 
 export const GetPriorityAccessForm = () => {
   const searchParams = useSearchParams();
@@ -60,19 +60,13 @@ export const GetPriorityAccessForm = () => {
 
     console.log("Validating form", formData, newErrors);
     // Basic email validation
-    if (
-      formData.UserDetails.Email &&
-      !/\S+@\S+\.\S+/.test(formData.UserDetails.Email)
-    ) {
+    if (formData.UserDetails.Email && !/\S+@\S+\.\S+/.test(formData.UserDetails.Email)) {
       newErrors.UserDetails.Email = true;
       isValid = false;
     }
 
     // Basic website URL validation
-    if (
-      formData.UserDetails.Website &&
-      !/^https?:\/\/.+\..+/.test(formData.UserDetails.Website)
-    ) {
+    if (formData.UserDetails.Website && !/^https?:\/\/.+\..+/.test(formData.UserDetails.Website)) {
       newErrors.UserDetails.Website = true;
       isValid = false;
     }
@@ -141,7 +135,7 @@ export const GetPriorityAccessForm = () => {
       // Collect ALL parameters that start with 'utm'
       const finalutm: Record<string, string> = {};
       searchParams.forEach((value, key) => {
-        if (key.startsWith('utm')) {
+        if (key.startsWith("utm")) {
           finalutm[key] = value;
         }
       });
@@ -209,61 +203,61 @@ export const GetPriorityAccessForm = () => {
                   <tr>
                     <td style="padding: 10px 0; border-bottom: 1px solid #e1e4e8;">
                       <strong style="color: #555555; display: inline-block; width: 140px;">First Name:</strong>
-                      <span style="color: #333333;">${formData.UserDetails.FirstName
-        }</span>
+                      <span style="color: #333333;">${formData.UserDetails.FirstName}</span>
                     </td>
                   </tr>
                   <tr>
                     <td style="padding: 10px 0; border-bottom: 1px solid #e1e4e8;">
                       <strong style="color: #555555; display: inline-block; width: 140px;">Last Name:</strong>
-                      <span style="color: #333333;">${formData.UserDetails.LastName
-        }</span>
+                      <span style="color: #333333;">${formData.UserDetails.LastName}</span>
                     </td>
                   </tr>
                   <tr>
                     <td style="padding: 10px 0; border-bottom: 1px solid #e1e4e8;">
                       <strong style="color: #555555; display: inline-block; width: 140px;">Email:</strong>
-                      <a href="mailto:${formData.UserDetails.Email
-        }" style="color: #0066cc; text-decoration: none;">${formData.UserDetails.Email
-        }</a>
+                      <a href="mailto:${formData.UserDetails.Email}" style="color: #0066cc; text-decoration: none;">${
+        formData.UserDetails.Email
+      }</a>
                     </td>
                   </tr>
                   <tr>
                     <td style="padding: 10px 0; border-bottom: 1px solid #e1e4e8;">
                       <strong style="color: #555555; display: inline-block; width: 140px;">Company:</strong>
-                      <span style="color: #333333;">${formData.UserDetails.Company
-        }</span>
+                      <span style="color: #333333;">${formData.UserDetails.Company}</span>
                     </td>
                   </tr>
                   <tr>
                     <td style="padding: 10px 0; border-bottom: 1px solid #e1e4e8;">
                       <strong style="color: #555555; display: inline-block; width: 140px;">Website:</strong>
-                      <a href="${formData.UserDetails.Website}" style="color: #0066cc; text-decoration: none;">${formData.UserDetails.Website}</a>
+                      <a href="${formData.UserDetails.Website}" style="color: #0066cc; text-decoration: none;">${
+        formData.UserDetails.Website
+      }</a>
                     </td>
                   </tr>
                   <tr>
                     <td style="padding: 10px 0; border-bottom: 1px solid #e1e4e8;">
                       <strong style="color: #555555; display: inline-block; width: 140px;">LinkedIn:</strong>
-                      <a href="${formData.UserDetails.LinkedIn}" style="color: #0066cc; text-decoration: none;">${formData.UserDetails.LinkedIn || "Not provided"}</a>
+                      <a href="${formData.UserDetails.LinkedIn}" style="color: #0066cc; text-decoration: none;">${
+        formData.UserDetails.LinkedIn || "Not provided"
+      }</a>
                     </td>
                   </tr>
                   <tr>
                     <td style="padding: 10px 0; border-bottom: 1px solid #e1e4e8;">
                       <strong style="color: #555555; display: inline-block; width: 140px;">Interest: </strong>
-                      <span style="color: #333333;">${formData.topic || "Not specified"
-        }</span>
+                      <span style="color: #333333;">${formData.topic || "Not specified"}</span>
                     </td>
                   </tr>
                   <tr>
                     <td style="padding: 10px 0; border-bottom: 1px solid #e1e4e8;">
                       <strong style="color: #555555; display: inline-block; width: 140px;">Privacy Consent:</strong>
-                      <span style="color: #333333;">${consentData.privacyConsent ? 'Yes' : 'No'}</span>
+                      <span style="color: #333333;">${consentData.privacyConsent ? "Yes" : "No"}</span>
                     </td>
                   </tr>
                   <tr>
                     <td style="padding: 10px 0; border-bottom: 1px solid #e1e4e8;">
                       <strong style="color: #555555; display: inline-block; width: 140px;">Marketing Consent:</strong>
-                      <span style="color: #333333;">${consentData.marketingConsent ? 'Yes' : 'No'}</span>
+                      <span style="color: #333333;">${consentData.marketingConsent ? "Yes" : "No"}</span>
                     </td>
                   </tr>
                   <tr>
@@ -272,27 +266,28 @@ export const GetPriorityAccessForm = () => {
                       <span style="color: #333333;">${consentData.consentTimestamp}</span>
                     </td>
                   </tr>
-                  ${Object.entries(finalutm).map(([key, value]) => {
-          // Format the key for display (utm_source -> UTM Source)
-          const displayKey = key
-            .replace(/_/g, ' ')
-            .split(' ')
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ');
+                  ${Object.entries(finalutm)
+                    .map(([key, value]) => {
+                      // Format the key for display (utm_source -> UTM Source)
+                      const displayKey = key
+                        .replace(/_/g, " ")
+                        .split(" ")
+                        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(" ");
 
-          return `
+                      return `
                   <tr>
                     <td style="padding: 10px 0; border-bottom: 1px solid #e1e4e8;">
                       <strong style="color: #555555; display: inline-block; width: 140px;">${displayKey}:</strong>
                       <span style="color: #333333;">${value || "Not specified"}</span>
                     </td>
                   </tr>`;
-        }).join('')}
+                    })
+                    .join("")}
                   <tr>
                     <td style="padding: 10px 0;">
                       <strong style="color: #555555; display: block; margin-bottom: 5px;"></strong>
-                      <span style="color: #333333; display: block; line-height: 1.5;">${formData.description
-        }</span>
+                      <span style="color: #333333; display: block; line-height: 1.5;">${formData.description}</span>
                     </td>
                   </tr>
                 </table>
@@ -340,24 +335,23 @@ export const GetPriorityAccessForm = () => {
           {
             email: "radha.jaishetty@fn7.io",
             name: "RK",
-          }
+          },
         ],
         subject: "You have a new form submission on your Atlas site!",
         utmssource: utmParams,
-        body: companybody
+        body: companybody,
       };
 
-
       // Track form submission
-      trackEvent('Form Submitted', {
-        form_name: 'Get Priority Access',
-        page: 'Get Form',
+      trackEvent("Form Submitted", {
+        form_name: "Get Priority Access",
+        page: "Get Form",
         topic: formData.topic,
         company: formData.UserDetails.Company,
         website: formData.UserDetails.Website,
         privacy_consent: formData.privacyConsent,
         marketing_consent: formData.marketingConsent,
-        ...getCurrentUTMParams()
+        ...getCurrentUTMParams(),
       });
 
       // Make API call to send email
@@ -373,10 +367,10 @@ export const GetPriorityAccessForm = () => {
       isSubmitting = false;
 
       // Track successful submission
-      trackEvent('Form Submission Success', {
-        form_name: 'Get Priority Access',
-        page: 'Get Form',
-        ...getCurrentUTMParams()
+      trackEvent("Form Submission Success", {
+        form_name: "Get Priority Access",
+        page: "Get Form",
+        ...getCurrentUTMParams(),
       });
 
       // Preserve query parameters when navigating to submit page
@@ -455,56 +449,31 @@ export const GetPriorityAccessForm = () => {
       id: "q3",
       text: "3. How long has it been since your company or product inception?",
       type: "radio",
-      options: [
-        "Not launched yet",
-        "Less than 3 months ago",
-        "3 to 6 months ago",
-        "More than 6 months ago",
-      ],
+      options: ["Not launched yet", "Less than 3 months ago", "3 to 6 months ago", "More than 6 months ago"],
     },
     {
       id: "q4",
       text: "4. How big is your team?",
       type: "radio",
-      options: [
-        "Solo founder",
-        "2 to 5 people",
-        "6 to 20 people",
-        "More than 20 people",
-      ],
+      options: ["Solo founder", "2 to 5 people", "6 to 20 people", "More than 20 people"],
     },
     {
       id: "q5",
       text: "5. How many active users or customers do you have?",
       type: "radio",
-      options: [
-        "Fewer than 10",
-        "10 to 100",
-        "100 to 1,000",
-        "More than 1,000",
-      ],
+      options: ["Fewer than 10", "10 to 100", "100 to 1,000", "More than 1,000"],
     },
     {
       id: "q6",
       text: "6. What's your current monthly marketing budget?",
       type: "radio",
-      options: [
-        "Less than $1,000",
-        "$1,000 to $5,000",
-        "$5,001 to $20,000",
-        "More than $20,000",
-      ],
+      options: ["Less than $1,000", "$1,000 to $5,000", "$5,001 to $20,000", "More than $20,000"],
     },
     {
       id: "q7",
       text: "7. Which paid marketing channels do you currently use? (Select all that apply)",
       type: "checkbox",
-      options: [
-        "Google Ads",
-        "LinkedIn Ads",
-        "Meta Ads (Facebook/Instagram)",
-        "None",
-      ],
+      options: ["Google Ads", "LinkedIn Ads", "Meta Ads (Facebook/Instagram)", "None"],
       hasOther: true,
     },
     {
@@ -524,12 +493,7 @@ export const GetPriorityAccessForm = () => {
       id: "q9",
       text: "9. What's your top goal for growth over the next 3 to 6 months?",
       type: "checkbox",
-      options: [
-        "Acquire new customers",
-        "Increase user engagement",
-        "Improve conversion rates",
-        "Grow revenue",
-      ],
+      options: ["Acquire new customers", "Increase user engagement", "Improve conversion rates", "Grow revenue"],
       hasOther: true,
     },
   ];
@@ -540,11 +504,7 @@ export const GetPriorityAccessForm = () => {
       id: "atlas_q1",
       text: "1. Are you actively building or planning to build custom AI agents or automated workflows?",
       type: "radio",
-      options: [
-        "Yes, actively building",
-        "Planning to start soon",
-        "Just exploring",
-      ],
+      options: ["Yes, actively building", "Planning to start soon", "Just exploring"],
     },
     {
       id: "atlas_q2",
@@ -561,11 +521,7 @@ export const GetPriorityAccessForm = () => {
       id: "atlas_q3",
       text: "3. How experienced is your team with AI or automation development?",
       type: "radio",
-      options: [
-        "None / beginner",
-        "Moderate / some experience",
-        "Expert / advanced technical skills",
-      ],
+      options: ["None / beginner", "Moderate / some experience", "Expert / advanced technical skills"],
     },
     {
       id: "atlas_q4",
@@ -581,55 +537,32 @@ export const GetPriorityAccessForm = () => {
       id: "atlas_q5",
       text: "5. How critical is control over your data and AI logic?",
       type: "radio",
-      options: [
-        "Mission critical: Full ownership and control needed",
-        "Important but flexible",
-        "Not a priority",
-      ],
+      options: ["Mission critical: Full ownership and control needed", "Important but flexible", "Not a priority"],
     },
     {
       id: "atlas_q6",
       text: "6. What is the scale of your current or intended deployment?",
       type: "radio",
-      options: [
-        "Small pilot / PoC",
-        "Startup / small team",
-        "Mid-sized company",
-        "Large enterprise",
-      ],
+      options: ["Small pilot / PoC", "Startup / small team", "Mid-sized company", "Large enterprise"],
     },
     {
       id: "atlas_q7",
       text: "7. What are your biggest challenges today in building or managing AI agents?",
       type: "radio",
-      options: [
-        "Technical complexity",
-        "Data integration",
-        "Scaling solutions",
-        "Maintenance and updates",
-      ],
+      options: ["Technical complexity", "Data integration", "Scaling solutions", "Maintenance and updates"],
       hasOther: true,
     },
     {
       id: "atlas_q8",
       text: "8. What is your expected timeline to launch your AI agents?",
       type: "radio",
-      options: [
-        "Within 1 month",
-        "1-3 months",
-        "3-6 months",
-        "Beyond 6 months",
-      ],
+      options: ["Within 1 month", "1-3 months", "3-6 months", "Beyond 6 months"],
     },
     {
       id: "atlas_q9",
       text: "9. How do you prefer to work with the Atlas team?",
       type: "radio",
-      options: [
-        "Full partnership and support",
-        "Occasional consulting",
-        "Independent, minimal support",
-      ],
+      options: ["Full partnership and support", "Occasional consulting", "Independent, minimal support"],
     },
   ];
 
@@ -769,45 +702,28 @@ export const GetPriorityAccessForm = () => {
   };
 
   // Function to update the description field with all answers
-  const updateDescription = (
-    currentAnswers?: typeof questionAnswers | null
-  ) => {
+  const updateDescription = (currentAnswers?: typeof questionAnswers | null) => {
     // Use passed answers or current state
     const answersToUse = currentAnswers || questionAnswers;
-    let questionsToUse =
-      formData.topic === "fn7 GTM Agents" ? gtmQuestions : atlasQuestions;
+    let questionsToUse = formData.topic === "fn7 GTM Agents" ? gtmQuestions : atlasQuestions;
 
     const updatedDescription = questionsToUse
       .map((question) => {
         const { id, text, type, hasOther } = question;
 
-        if (
-          type === "checkbox" &&
-          answersToUse[id] &&
-          answersToUse[id].length > 0
-        ) {
+        if (type === "checkbox" && answersToUse[id] && answersToUse[id].length > 0) {
           // For multi-select questions (checkboxes)
           let answer = answersToUse[id].join(", ");
 
           // Handle "Other" option with text input
-          if (
-            answersToUse[id].includes("Other") &&
-            answersToUse[`${id}_other`]
-          ) {
-            answer = answer.replace(
-              "Other",
-              `Other: ${answersToUse[`${id}_other`]}`
-            );
+          if (answersToUse[id].includes("Other") && answersToUse[`${id}_other`]) {
+            answer = answer.replace("Other", `Other: ${answersToUse[`${id}_other`]}`);
           }
 
           return answer ? `${text} <br> → ${answer} <br><br>  ` : "<br><br>  ";
         } else if (type === "radio" && answersToUse[id]) {
           // For single-select questions (radio buttons)
-          if (
-            answersToUse[id] === "Other" &&
-            hasOther &&
-            answersToUse[`${id}_other`]
-          ) {
+          if (answersToUse[id] === "Other" && hasOther && answersToUse[`${id}_other`]) {
             return `${text}\n→ Other: ${answersToUse[`${id}_other`]}`;
           } else {
             return answersToUse[id] ? `${text} <br> → ${answersToUse[id]} <br> <br> ` : "<br> <br> ";
@@ -839,17 +755,11 @@ export const GetPriorityAccessForm = () => {
                 id={`${question.id}_${option.replace(/\s+/g, "_")}`}
                 name={`${question.id}_option`}
                 value={option}
-                checked={
-                  questionAnswers[question.id]?.includes(option) || false
-                }
+                checked={questionAnswers[question.id]?.includes(option) || false}
                 onChange={handleChange}
-                className={`mt-1 h-4 w-4 ${hasError ? "border-red-500" : "text-purple-600"
-                  }`}
+                className={`mt-1 h-4 w-4 ${hasError ? "border-red-500" : "text-purple-600"}`}
               />
-              <label
-                htmlFor={`${question.id}_${option.replace(/\s+/g, "_")}`}
-                className="ml-2 block text-sm"
-              >
+              <label htmlFor={`${question.id}_${option.replace(/\s+/g, "_")}`} className="ml-2 block text-sm">
                 {option}
               </label>
             </div>
@@ -863,17 +773,11 @@ export const GetPriorityAccessForm = () => {
                 id={`${question.id}_Other`}
                 name={`${question.id}_option`}
                 value="Other"
-                checked={
-                  questionAnswers[question.id]?.includes("Other") || false
-                }
+                checked={questionAnswers[question.id]?.includes("Other") || false}
                 onChange={handleChange}
-                className={`mt-1 h-4 w-4 ${hasError ? "border-red-500" : "text-purple-600"
-                  }`}
+                className={`mt-1 h-4 w-4 ${hasError ? "border-red-500" : "text-purple-600"}`}
               />
-              <label
-                htmlFor={`${question.id}_Other`}
-                className="ml-2 block text-sm"
-              >
+              <label htmlFor={`${question.id}_Other`} className="ml-2 block text-sm">
                 Other
               </label>
               {questionAnswers[question.id]?.includes("Other") && (
@@ -889,11 +793,7 @@ export const GetPriorityAccessForm = () => {
             </div>
           )}
 
-          {hasError && (
-            <p className="text-red-500 text-xs mt-1">
-              Please select at least one option
-            </p>
-          )}
+          {hasError && <p className="text-red-500 text-xs mt-1">Please select at least one option</p>}
         </div>
       );
     } else if (question.type === "radio") {
@@ -908,13 +808,9 @@ export const GetPriorityAccessForm = () => {
                 value={option}
                 checked={questionAnswers[question.id] === option}
                 onChange={handleChange}
-                className={`mt-1 h-4 w-4 ${hasError ? "border-red-500" : "text-purple-600"
-                  }`}
+                className={`mt-1 h-4 w-4 ${hasError ? "border-red-500" : "text-purple-600"}`}
               />
-              <label
-                htmlFor={`${question.id}_${option.replace(/\s+/g, "_")}`}
-                className="ml-2 block text-sm"
-              >
+              <label htmlFor={`${question.id}_${option.replace(/\s+/g, "_")}`} className="ml-2 block text-sm">
                 {option}
               </label>
             </div>
@@ -930,13 +826,9 @@ export const GetPriorityAccessForm = () => {
                 value="Other"
                 checked={questionAnswers[question.id] === "Other"}
                 onChange={handleChange}
-                className={`mt-1 h-4 w-4 ${hasError ? "border-red-500" : "text-purple-600"
-                  }`}
+                className={`mt-1 h-4 w-4 ${hasError ? "border-red-500" : "text-purple-600"}`}
               />
-              <label
-                htmlFor={`${question.id}_Other`}
-                className="ml-2 block text-sm"
-              >
+              <label htmlFor={`${question.id}_Other`} className="ml-2 block text-sm">
                 Other
               </label>
               {questionAnswers[question.id] === "Other" && (
@@ -952,9 +844,7 @@ export const GetPriorityAccessForm = () => {
             </div>
           )}
 
-          {hasError && (
-            <p className="text-red-500 text-xs mt-1">Please select an option</p>
-          )}
+          {hasError && <p className="text-red-500 text-xs mt-1">Please select an option</p>}
         </div>
       );
     }
@@ -968,8 +858,7 @@ export const GetPriorityAccessForm = () => {
       style={{
         padding: "2px",
         borderRadius: "16px",
-        background:
-          "linear-gradient(90deg, rgba(255,72,44,0.8) 0%, rgba(162,69,238,0.8) 100%)",
+        background: "linear-gradient(90deg, rgba(255,72,44,0.8) 0%, rgba(162,69,238,0.8) 100%)",
       }}
     >
       <section
@@ -978,17 +867,12 @@ export const GetPriorityAccessForm = () => {
           borderRadius: "16px",
         }}
       >
-        <h2 className="text-3xl font-bold mb-8 text-center">
-          Get Beta Access
-        </h2>
+        <h2 className="text-3xl font-bold mb-8 text-center">Get Beta Access</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Name fields */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label
-                htmlFor="FirstName"
-                className="block text-sm font-medium mb-1"
-              >
+              <label htmlFor="FirstName" className="block text-sm font-medium mb-1">
                 First Name *
               </label>
               <input
@@ -997,24 +881,18 @@ export const GetPriorityAccessForm = () => {
                 name="FirstName"
                 placeholder="First Name"
                 required
-                className={`w-full bg-gray-100 text-gray-900 placeholder-gray-500 px-4 py-2 rounded border ${validationErrors.UserDetails.FirstName
-                  ? "border-red-500 error-highlight"
-                  : "border-gray-300"
-                  } focus:outline-none focus:ring-2 focus:ring-purple-400`}
+                className={`w-full bg-gray-100 text-gray-900 placeholder-gray-500 px-4 py-2 rounded border ${
+                  validationErrors.UserDetails.FirstName ? "border-red-500 error-highlight" : "border-gray-300"
+                } focus:outline-none focus:ring-2 focus:ring-purple-400`}
                 onChange={handleChange}
                 value={formData.UserDetails.FirstName}
               />
               {validationErrors.UserDetails.FirstName && (
-                <p className="text-red-500 text-xs mt-1">
-                  First name is required
-                </p>
+                <p className="text-red-500 text-xs mt-1">First name is required</p>
               )}
             </div>
             <div>
-              <label
-                htmlFor="LastName"
-                className="block text-sm font-medium mb-1"
-              >
+              <label htmlFor="LastName" className="block text-sm font-medium mb-1">
                 Last Name *
               </label>
               <input
@@ -1023,17 +901,14 @@ export const GetPriorityAccessForm = () => {
                 name="LastName"
                 placeholder="Last Name"
                 required
-                className={`w-full bg-gray-100 text-gray-900 placeholder-gray-500 px-4 py-2 rounded border ${validationErrors.UserDetails.LastName
-                  ? "border-red-500 error-highlight"
-                  : "border-gray-300"
-                  } focus:outline-none focus:ring-2 focus:ring-purple-400`}
+                className={`w-full bg-gray-100 text-gray-900 placeholder-gray-500 px-4 py-2 rounded border ${
+                  validationErrors.UserDetails.LastName ? "border-red-500 error-highlight" : "border-gray-300"
+                } focus:outline-none focus:ring-2 focus:ring-purple-400`}
                 onChange={handleChange}
                 value={formData.UserDetails.LastName}
               />
               {validationErrors.UserDetails.LastName && (
-                <p className="text-red-500 text-xs mt-1">
-                  Last name is required
-                </p>
+                <p className="text-red-500 text-xs mt-1">Last name is required</p>
               )}
             </div>
           </div>
@@ -1049,17 +924,14 @@ export const GetPriorityAccessForm = () => {
               name="Email"
               placeholder="jane@company.com"
               required
-              className={`w-full bg-gray-100 text-gray-900 placeholder-gray-500 px-4 py-2 rounded border ${validationErrors.UserDetails.Email
-                ? "border-red-500 error-highlight"
-                : "border-gray-300"
-                } focus:outline-none focus:ring-2 focus:ring-purple-400`}
+              className={`w-full bg-gray-100 text-gray-900 placeholder-gray-500 px-4 py-2 rounded border ${
+                validationErrors.UserDetails.Email ? "border-red-500 error-highlight" : "border-gray-300"
+              } focus:outline-none focus:ring-2 focus:ring-purple-400`}
               onChange={handleChange}
               value={formData.UserDetails.Email}
             />
             {validationErrors.UserDetails.Email && (
-              <p className="text-red-500 text-xs mt-1">
-                Please enter a valid email address
-              </p>
+              <p className="text-red-500 text-xs mt-1">Please enter a valid email address</p>
             )}
           </div>
 
@@ -1074,17 +946,14 @@ export const GetPriorityAccessForm = () => {
               name="Company"
               placeholder="Company Name"
               required
-              className={`w-full bg-gray-100 text-gray-900 placeholder-gray-500 px-4 py-2 rounded border ${validationErrors.UserDetails.Company
-                ? "border-red-500 error-highlight"
-                : "border-gray-300"
-                } focus:outline-none focus:ring-2 focus:ring-purple-400`}
+              className={`w-full bg-gray-100 text-gray-900 placeholder-gray-500 px-4 py-2 rounded border ${
+                validationErrors.UserDetails.Company ? "border-red-500 error-highlight" : "border-gray-300"
+              } focus:outline-none focus:ring-2 focus:ring-purple-400`}
               onChange={handleChange}
               value={formData.UserDetails.Company}
             />
             {validationErrors.UserDetails.Company && (
-              <p className="text-red-500 text-xs mt-1">
-                Company name is required
-              </p>
+              <p className="text-red-500 text-xs mt-1">Company name is required</p>
             )}
           </div>
 
@@ -1099,17 +968,14 @@ export const GetPriorityAccessForm = () => {
               name="Website"
               placeholder="https://company.com"
               required
-              className={`w-full bg-gray-100 text-gray-900 placeholder-gray-500 px-4 py-2 rounded border ${validationErrors.UserDetails.Website
-                ? "border-red-500 error-highlight"
-                : "border-gray-300"
-                } focus:outline-none focus:ring-2 focus:ring-purple-400`}
+              className={`w-full bg-gray-100 text-gray-900 placeholder-gray-500 px-4 py-2 rounded border ${
+                validationErrors.UserDetails.Website ? "border-red-500 error-highlight" : "border-gray-300"
+              } focus:outline-none focus:ring-2 focus:ring-purple-400`}
               onChange={handleChange}
               value={formData.UserDetails.Website}
             />
             {validationErrors.UserDetails.Website && (
-              <p className="text-red-500 text-xs mt-1">
-                Please enter a valid website URL
-              </p>
+              <p className="text-red-500 text-xs mt-1">Please enter a valid website URL</p>
             )}
           </div>
 
@@ -1123,17 +989,14 @@ export const GetPriorityAccessForm = () => {
               id="LinkedIn"
               name="LinkedIn"
               placeholder="https://linkedin.com/in/yourprofile"
-              className={`w-full bg-gray-100 text-gray-900 placeholder-gray-500 px-4 py-2 rounded border ${validationErrors.UserDetails.LinkedIn
-                ? "border-red-500 error-highlight"
-                : "border-gray-300"
-                } focus:outline-none focus:ring-2 focus:ring-purple-400`}
+              className={`w-full bg-gray-100 text-gray-900 placeholder-gray-500 px-4 py-2 rounded border ${
+                validationErrors.UserDetails.LinkedIn ? "border-red-500 error-highlight" : "border-gray-300"
+              } focus:outline-none focus:ring-2 focus:ring-purple-400`}
               onChange={handleChange}
               value={formData.UserDetails.LinkedIn}
             />
             {validationErrors.UserDetails.LinkedIn && (
-              <p className="text-red-500 text-xs mt-1">
-                Please enter a valid LinkedIn profile URL
-              </p>
+              <p className="text-red-500 text-xs mt-1">Please enter a valid LinkedIn profile URL</p>
             )}
           </div>
 
@@ -1232,20 +1095,24 @@ export const GetPriorityAccessForm = () => {
                 id="privacy-consent"
                 checked={formData.privacyConsent}
                 onChange={(e) => {
-                  setFormData({...formData, privacyConsent: e.target.checked});
-                  setValidationErrors({...validationErrors, privacyConsent: false});
+                  setFormData({ ...formData, privacyConsent: e.target.checked });
+                  setValidationErrors({ ...validationErrors, privacyConsent: false });
                 }}
                 className={`mt-1 h-4 w-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500 ${
-                  validationErrors.privacyConsent ? 'border-red-500' : ''
+                  validationErrors.privacyConsent ? "border-red-500" : ""
                 }`}
                 required
               />
               <label htmlFor="privacy-consent" className="ml-2 text-sm text-gray-700">
-                <span className="text-red-500">*</span> I have read and agree to the{' '}
-                <Link href="/privacy-policy" target="_blank" className="text-purple-600 hover:text-purple-700 underline">
+                <span className="text-red-500">*</span> I have read and agree to the{" "}
+                <Link
+                  href="/privacy-policy"
+                  target="_blank"
+                  className="text-purple-600 hover:text-purple-700 underline"
+                >
                   Privacy Policy
-                </Link>{' '}
-                and{' '}
+                </Link>{" "}
+                and{" "}
                 <Link href="/tnc" target="_blank" className="text-purple-600 hover:text-purple-700 underline">
                   Terms of Service
                 </Link>
@@ -1264,12 +1131,12 @@ export const GetPriorityAccessForm = () => {
                 type="checkbox"
                 id="marketing-consent"
                 checked={formData.marketingConsent}
-                onChange={(e) => setFormData({...formData, marketingConsent: e.target.checked})}
+                onChange={(e) => setFormData({ ...formData, marketingConsent: e.target.checked })}
                 className="mt-1 h-4 w-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
               />
               <label htmlFor="marketing-consent" className="ml-2 text-sm text-gray-700">
-                I would like to receive marketing communications, updates, and promotional offers from FN7
-                (optional - you can unsubscribe at any time)
+                I would like to receive marketing communications, updates, and promotional offers from FN7 (optional -
+                you can unsubscribe at any time)
               </label>
             </div>
 
@@ -1290,8 +1157,7 @@ export const GetPriorityAccessForm = () => {
             type="submit"
             className="w-full font-semibold py-3 rounded-lg text-white transition relative"
             style={{
-              background:
-                "linear-gradient(90deg, rgba(255,72,44,0.8) 0%, rgba(162,69,238,0.8) 100%)",
+              background: "linear-gradient(90deg, rgba(255,72,44,0.8) 0%, rgba(162,69,238,0.8) 100%)",
             }}
             disabled={isSubmitting}
           >
